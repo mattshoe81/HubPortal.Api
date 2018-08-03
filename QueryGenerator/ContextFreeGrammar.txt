@@ -1,0 +1,75 @@
+﻿=================================================================================
+|             Context Free Grammar: Hub Portal Transaction Queries              |
+|	*Grammar to construct complex transaction queries independent of database*  |
+=================================================================================
+Expression → 
+		FIND SearchType <Refinement>
+		| FIND source { source : ‘Value’ } <Refinement>
+		| FIND source { source : ‘Value’ } { destination : ‘Value’ } <Refinement> 
+
+SearchType →
+		process | client
+
+Refinement →
+		{ Property : 'Value' }
+
+Value →
+		<Letter | Digit | Space>	
+		
+Property →
+		transactionType
+		| startDate
+		| endDate
+		| startTime
+		| endTime
+		| minTime
+		| maxTime
+		| pingOptions
+		| failed
+		| serverName
+		| sessionId
+		| ignore
+		| policyNumber
+		| referralNumber
+		| csr
+		| referralDate
+		| zipCode
+		| promoCode
+		| creditCardNumber
+		| ctu
+		| authorizationCode
+		| accountNumber
+		| orderID
+		| invoiceNumber
+		| genericSearchString
+		| includeGenericStringInTransaction
+		| claimNumber
+		| fnolNumber
+		| subcompany
+		| partNumber
+		| carID	
+		| amount
+		| workOrderNumber
+		| workOrderID
+		| warehouseNumber
+		| shopNumber
+		| checkpoint
+		| lookupType
+		| processName 
+		| clientName
+ 
+Letter → 
+		a | b | c | d | | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |  
+		A | B | C | D | | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
+		- | & 
+
+Digit →
+		0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+ 
+ Space →
+		' '
+
+LEGEND:
+	<>: Means a string of zero or more occurrences of the contents within <>
+	| : Means OR
+	If there are no rewrite rules for a symbol, then consider it a terminal symbol

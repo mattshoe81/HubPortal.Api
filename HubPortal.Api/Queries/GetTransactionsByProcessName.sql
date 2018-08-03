@@ -17,13 +17,15 @@ from hts_transactions ht,
 	hts_process pr, 
 	hts_transaction_type tr, 
 	hts_client cl, hts_client cli 
-where (ht.process_id in 
+where (
+	ht.process_id in 
 	(
 		select process_id 
 		from hts_process 
-		where process_name like :parameter
+		where process_name like :procesName
 	) 
-	and ht.process_id = pr.process_id 
-	and pr.trans_type = tr.trans_type_id 
-	and pr.source=cl.client_id 
-	and pr.destination=cli.client_id)
+	and ht.process_id = nvl(:processId, pr.process_id)
+	and pr.trans_type = nvl(:transType, tr.trans_type_id) 
+	and pr.source = nvl(:source, cl.client_id)
+	and pr.destination = nvl(:destination, cli.client_id)
+)

@@ -112,6 +112,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QueryGenerator\HubPortal.QueryGenerator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Oracle.ManagedDataAccess">
       <HintPath>..\..\..\..\..\..\Oracle\lib\netstandard2.0\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>

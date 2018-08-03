@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Queries\ByClientName.sql" />
+    <None Remove="Queries\ByDestination.sql" />
+    <None Remove="Queries\ByEndTime.sql" />
+    <None Remove="Queries\ByFailed.sql" />
+    <None Remove="Queries\ByMaxTime.sql" />
+    <None Remove="Queries\ByMinTime.sql" />
+    <None Remove="Queries\ByPingOptions.sql" />
+    <None Remove="Queries\ByProcessName.sql" />
+    <None Remove="Queries\ByServerName.sql" />
+    <None Remove="Queries\BySessionID.sql" />
+    <None Remove="Queries\BySource.sql" />
+    <None Remove="Queries\ByStartDate.sql" />
+    <None Remove="Queries\ByStartTime.sql" />
+    <None Remove="Queries\ByTransactionType.sql" />
+    <None Remove="Queries\GetTransactions.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Queries\ByClientName.sql" />
+    <EmbeddedResource Include="Queries\ByDestination.sql" />
+    <EmbeddedResource Include="Queries\ByEndTime.sql" />
+    <EmbeddedResource Include="Queries\ByFailed.sql" />
+    <EmbeddedResource Include="Queries\ByMaxTime.sql" />
+    <EmbeddedResource Include="Queries\ByMinTime.sql" />
+    <EmbeddedResource Include="Queries\ByPingOptions.sql" />
+    <EmbeddedResource Include="Queries\ByProcessName.sql" />
+    <EmbeddedResource Include="Queries\ByServerName.sql" />
+    <EmbeddedResource Include="Queries\BySessionID.sql" />
+    <EmbeddedResource Include="Queries\BySource.sql" />
+    <EmbeddedResource Include="Queries\ByStartDate.sql" />
+    <EmbeddedResource Include="Queries\ByStartTime.sql" />
+    <EmbeddedResource Include="Queries\ByTransactionType.sql" />
+    <EmbeddedResource Include="Queries\GetTransactions.sql" />
+  </ItemGroup>
+
+</Project>

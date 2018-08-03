@@ -1,0 +1,1 @@
+﻿AND ht.IS_SUCCESSFUL = '@'
