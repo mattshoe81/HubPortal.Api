@@ -1,12 +1,8 @@
-﻿using Oracle.ManagedDataAccess.Client;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace HubPortal.Api.Extensions
-{
+namespace HubPortal.Api.Extensions {
+
     public static class DateTimeExtensions {
 
         public static string ToOracleTimeStamp(this DateTime date) {
@@ -43,8 +39,5 @@ namespace HubPortal.Api.Extensions
         public static string ToJson(this DateTime dateTime) {
             return dateTime.ToString("yyyy-MM-dd'T'HH:mm:ss.fff'Z'");
         }
-
-
-
     }
 }

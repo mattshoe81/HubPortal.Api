@@ -1,4 +1,5 @@
-﻿AND (
+﻿
+AND (
 	cl.CLIENT_ID = (
 		select client_id 
 		from hts_client 

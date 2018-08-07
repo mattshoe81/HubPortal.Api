@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace HubPortal.Api.Models
-{
-    public class Transaction
-    {
+namespace HubPortal.Api.Models {
 
+    public class Transaction {
         public string TransactionID { get; set; }
 
         public string ProcessName { get; set; }
@@ -18,7 +13,7 @@ namespace HubPortal.Api.Models
 
         public bool? TransactionCompleted { get; set; }
 
-        public int? TotalElapsedTime { get; set; }
+        public decimal? TotalElapsedTime { get; set; }
 
         public string Url { get; set; }
 
@@ -31,7 +26,5 @@ namespace HubPortal.Api.Models
         public string Successful { get; set; }
 
         public int CheckpointCount { get; set; }
-
     }
 }
-

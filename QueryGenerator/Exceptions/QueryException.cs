@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace HubPortal.QueryGenerator.Exceptions
-{
-    class QueryException : Exception {
+namespace HubPortal.QueryGenerator.Exceptions {
 
-        public QueryException() { }
+    internal class QueryException : Exception {
 
-        public QueryException(string message) : base(message) { }
+        public QueryException() {
+        }
 
+        public QueryException(string message) : base(message) {
+        }
     }
 }

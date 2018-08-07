@@ -1,1 +1,2 @@
-﻿AND ht.IS_SUCCESSFUL = '@'
+﻿
+AND ht.IS_SUCCESSFUL = '@'

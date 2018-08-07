@@ -19,8 +19,9 @@ from hts_transactions ht,
 	hts_transaction_type tr, 
 	hts_client cl, hts_client cli 
 where (
-	ht.process_id = nvl(:processId, pr.process_id)
-	and pr.trans_type = nvl(:transType, tr.trans_type_id) 
-	and pr.source = nvl(:source, cl.client_id)
-	and pr.destination = nvl(:destination, cli.client_id)
+	ht.process_id = pr.process_id
+	and pr.trans_type = tr.trans_type_id 
+	and pr.source = cl.client_id
+	and pr.destination = cli.client_id
+	AND ROWNUM < 10000
 	

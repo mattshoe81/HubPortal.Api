@@ -1,0 +1,3 @@
+select TRANSACTION_TYPE_NAME
+from hts_transaction_type 
+order by transaction_type_name asc

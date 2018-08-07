@@ -1,19 +1,15 @@
 ﻿using HubPortal.Api.DataAccess;
-using HubPortal.Api.Extensions;
 using HubPortal.Api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Oracle.ManagedDataAccess.Client;
-using Oracle.ManagedDataAccess.Types;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HubPortal.Api.Controllers {
+
     [Route("api/[controller]")]
     public class TransactionLookupController : Controller {
+
+        #region Dummy Data
+
         private IEnumerable<string> dummyList = new List<string> {
             "first dummy string",
             "first dummy string",
@@ -22,6 +18,8 @@ namespace HubPortal.Api.Controllers {
             "third dummy string",
             "fourth dummy string"
         };
+
+        #endregion Dummy Data
 
         // GET: api/<controller>
         [HttpGet]
@@ -46,12 +44,16 @@ namespace HubPortal.Api.Controllers {
 
         [HttpPost("Post")]
         public JsonResult Post([FromBody]TransactionLookupData data) {
-            data.Transactions = TransactionLookupParser.GetTransactions(data);
-
+            data.Transactions = TransactionRequestParser.GetTransactions(data);
 
             return Json(data);
         }
-
-
     }
 }
+
+// This is reallllyyyyyyy sloooooowwwwwww
+// How to filter high frequency transactiona?... Should that even be a thing?...
+//if (data.Ignore) {
+//    IQueryable<Transaction> trans = data.Transactions.AsQueryable();
+//    data.Transactions = trans.Where(transaction => data.Transactions.Count(x => x.ProcessName == transaction.ProcessName) < 100).ToList();
+//}

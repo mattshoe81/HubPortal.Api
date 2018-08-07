@@ -5,52 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Queries\DeleteDeActivatedOutage.sql" />
-    <None Remove="Queries\GetAllTransactions.sql" />
-    <None Remove="Queries\GetAvg.sql" />
-    <None Remove="Queries\GetAvgWithTime.sql" />
-    <None Remove="Queries\GetBlobByCheckPointId.sql" />
-    <None Remove="Queries\GetCheckpointByTransactionId.sql" />
-    <None Remove="Queries\GetClientList.sql" />
-    <None Remove="Queries\GetClientName.sql" />
-    <None Remove="Queries\GetCommonClientErrors.sql" />
-    <None Remove="Queries\GetMaxWithTime.sql" />
-    <None Remove="Queries\GetOutageByClientName.sql" />
-    <None Remove="Queries\GetOutageByProcessName.sql" />
-    <None Remove="Queries\GetPingableProcessPingNameList.sql" />
-    <None Remove="Queries\GetPingDetailMessage.sql" />
-    <None Remove="Queries\GetPingNameList.sql" />
-    <None Remove="Queries\GetPingProcessDetail.sql" />
-    <None Remove="Queries\GetPingProcessDetailbyID.sql" />
-    <None Remove="Queries\GetPingResults.sql" />
-    <None Remove="Queries\GetPingResultsMessage.sql" />
-    <None Remove="Queries\GetPingResultsNoMatch.sql" />
-    <None Remove="Queries\GetPingResultsNoPing.sql" />
-    <None Remove="Queries\GetPingResultsNoResults.sql" />
-    <None Remove="Queries\GetPingStringNoResults.sql" />
-    <None Remove="Queries\GetPingStringResultsDetails.sql" />
-    <None Remove="Queries\GetProcessIDNameList.sql" />
-    <None Remove="Queries\GetProcessNameList.sql" />
-    <None Remove="Queries\GetSuccessDescription.sql" />
-    <None Remove="Queries\GetTransactionById.sql" />
-    <None Remove="Queries\GetTransactionById2.sql" />
-    <None Remove="Queries\GetTransactionsByClient.sql" />
-    <None Remove="Queries\GetTransactionsByClient2.sql" />
-    <None Remove="Queries\GetTransactionsByProcessId.sql" />
-    <None Remove="Queries\GetTransactionsByProcessName.sql" />
-    <None Remove="Queries\GetTransactionTypeById.sql" />
-    <None Remove="Queries\GetTransactionTypeList.sql" />
-    <None Remove="Queries\GetXPathSearchString.sql" />
-    <None Remove="Queries\IgnoreHighFrequency.sql" />
-    <None Remove="Queries\InsertClient.sql" />
-    <None Remove="Queries\InsertProcess.sql" />
-    <None Remove="Queries\InsertTransType.sql" />
-    <None Remove="Queries\SqlScratch.sql" />
-    <None Remove="Queries\Test.sql" />
-    <None Remove="Queries\UpdateTransactionType.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -58,57 +12,12 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
+    <PackageReference Include="SHFB.XsdDocumentationPlugin" Version="15.10.10" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Queries\DeleteDeActivatedOutage.sql" />
-    <EmbeddedResource Include="Queries\GetAllTransactions.sql" />
-    <EmbeddedResource Include="Queries\GetAvg.sql" />
-    <EmbeddedResource Include="Queries\GetAvgWithTime.sql" />
-    <EmbeddedResource Include="Queries\GetBlobByCheckPointId.sql" />
-    <EmbeddedResource Include="Queries\GetCheckpointByTransactionId.sql" />
-    <EmbeddedResource Include="Queries\GetClientList.sql" />
-    <EmbeddedResource Include="Queries\GetClientName.sql" />
-    <EmbeddedResource Include="Queries\GetCommonClientErrors.sql" />
-    <EmbeddedResource Include="Queries\GetMaxWithTime.sql" />
-    <EmbeddedResource Include="Queries\GetOutageByClientName.sql" />
-    <EmbeddedResource Include="Queries\GetOutageByProcessName.sql" />
-    <EmbeddedResource Include="Queries\GetPingableProcessPingNameList.sql" />
-    <EmbeddedResource Include="Queries\GetPingDetailMessage.sql" />
-    <EmbeddedResource Include="Queries\GetPingNameList.sql" />
-    <EmbeddedResource Include="Queries\GetPingProcessDetail.sql" />
-    <EmbeddedResource Include="Queries\GetPingProcessDetailbyID.sql" />
-    <EmbeddedResource Include="Queries\GetPingResults.sql" />
-    <EmbeddedResource Include="Queries\GetPingResultsMessage.sql" />
-    <EmbeddedResource Include="Queries\GetPingResultsNoMatch.sql" />
-    <EmbeddedResource Include="Queries\GetPingResultsNoPing.sql" />
-    <EmbeddedResource Include="Queries\GetPingResultsNoResults.sql" />
-    <EmbeddedResource Include="Queries\GetPingStringNoResults.sql" />
-    <EmbeddedResource Include="Queries\GetPingStringResultsDetails.sql" />
-    <EmbeddedResource Include="Queries\GetProcessIDNameList.sql" />
-    <EmbeddedResource Include="Queries\GetProcessNameList.sql" />
-    <EmbeddedResource Include="Queries\GetSuccessDescription.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionById.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionById2.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionsByClient.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionsByClient2.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionsByProcessId.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionsByProcessName.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionTypeById.sql" />
-    <EmbeddedResource Include="Queries\GetTransactionTypeList.sql" />
-    <EmbeddedResource Include="Queries\GetXPathSearchString.sql" />
-    <EmbeddedResource Include="Queries\IgnoreHighFrequency.sql" />
-    <EmbeddedResource Include="Queries\InsertClient.sql" />
-    <EmbeddedResource Include="Queries\InsertProcess.sql" />
-    <EmbeddedResource Include="Queries\InsertTransType.sql" />
-    <EmbeddedResource Include="Queries\SqlScratch.sql" />
-    <EmbeddedResource Include="Queries\Test.sql" />
-    <EmbeddedResource Include="Queries\UpdateTransactionType.sql" />
   </ItemGroup>
 
   <ItemGroup>

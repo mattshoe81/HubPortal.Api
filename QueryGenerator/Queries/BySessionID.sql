@@ -1,1 +1,2 @@
-﻿AND ht.SESSION_ID = '@'
+﻿
+AND ht.SESSION_ID = '@'

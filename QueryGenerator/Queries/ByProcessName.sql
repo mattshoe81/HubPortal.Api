@@ -1,4 +1,5 @@
-﻿AND ht.process_id in 
+﻿
+AND ht.process_id in 
 	(
 		select process_id 
 		from hts_process 
