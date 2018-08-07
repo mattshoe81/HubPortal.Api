@@ -1,5 +1,8 @@
 ﻿namespace HubPortal.QueryGenerator.ContextFreeGrammar {
 
+    /// <summary>
+    /// Interface to specify the methods required to construct a query according to the context free grammar.
+    /// </summary>
     public interface IQuery {
 
         /// <summary>

@@ -6,16 +6,18 @@ using System.Collections.Generic;
 
 namespace HubPortal.Api.DataAccess {
 
-    public class TransactionRequestParser {
-        public TransactionLookupData SearchData { get; set; }
+    /// <summary>
+    /// Parses the <see cref="HubPortal.Api.Models.TransactionLookupData"/> posted by the client,
+    /// and returns the transactions that satisfy those criteria.
+    /// </summary>
+    public static class TransactionRequestParser {
 
-        public TransactionRequestParser() {
-        }
-
-        public TransactionRequestParser(TransactionLookupData data) {
-            this.SearchData = data;
-        }
-
+        /// <summary>
+        /// Given the raw <see cref="HubPortal.Api.Models.TransactionLookupData"/> posted by the client, will return a list 
+        /// of transactions that satisfy those criteria.
+        /// </summary>
+        /// <param name="searchData">Raw data from client's post request</param>
+        /// <returns>List of transactions</returns>
         public static IEnumerable<Transaction> GetTransactions(TransactionLookupData searchData) {
             if (searchData.SearchType == "" || searchData.SearchType == null) throw new Exception("Search Type not defined");
             IEnumerable<Transaction> transactions = new List<Transaction>();

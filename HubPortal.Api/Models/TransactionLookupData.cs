@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HubPortal.Api.Models {
 
+    /// <summary>
+    /// Data used to specify the criteria by which to collect transactions during the transaction lookup.
+    /// </summary>
     public class TransactionLookupData {
         public string AccountNumber { get; set; }
         public int Amount { get; set; }

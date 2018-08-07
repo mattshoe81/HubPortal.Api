@@ -10,7 +10,7 @@ namespace HubPortal.Api.Controllers {
 
         #region Dummy Data
 
-        private IEnumerable<string> dummyList = new List<string> {
+        public IEnumerable<string> dummyList = new List<string> {
             "first dummy string",
             "first dummy string",
             "first dummy string",
@@ -27,33 +27,45 @@ namespace HubPortal.Api.Controllers {
             return "The API is up and running";
         }
 
+        /// <summary>
+        /// Returns a list of the names of all Processes in the database.
+        /// </summary>
+        /// <returns>List of Process names</returns>
         [HttpGet("GetProcessNames")]
         public IEnumerable<string> GetProcessNames() {
             return TransactionLookupEngine.GetProcessNameList();
         }
 
+        /// <summary>
+        /// Returns a list of the names of all Clients in the database.
+        /// </summary>
+        /// <returns>List of Client Names</returns>
         [HttpGet("GetClientNames")]
         public IEnumerable<string> GetClientNames() {
             return TransactionLookupEngine.GetClientList();
         }
 
+        /// <summary>
+        /// Returns a list of the names of all Transaction Types in the database.
+        /// </summary>
+        /// <returns>List of Transaction Type names</returns>
         [HttpGet("GetTransactionTypes")]
         public IEnumerable<string> GetTransactionTypes() {
             return TransactionLookupEngine.GetTransactionTypeList();
         }
 
+        /// <summary>
+        /// Given raw form data with fields matching <see cref="HubPortal.Api.Models.TransactionLookupData"/>, this call
+        /// will return the same <see cref="HubPortal.Api.Models.TransactionLookupData"/> object with the transactions field populated 
+        /// with a list of all transactions in the database that satisfy the criteria specified in the posted form.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost("Post")]
-        public JsonResult Post([FromBody]TransactionLookupData data) {
+        public JsonResult FindTransactions([FromBody]TransactionLookupData data) {
             data.Transactions = TransactionRequestParser.GetTransactions(data);
 
             return Json(data);
         }
     }
 }
-
-// This is reallllyyyyyyy sloooooowwwwwww
-// How to filter high frequency transactiona?... Should that even be a thing?...
-//if (data.Ignore) {
-//    IQueryable<Transaction> trans = data.Transactions.AsQueryable();
-//    data.Transactions = trans.Where(transaction => data.Transactions.Count(x => x.ProcessName == transaction.ProcessName) < 100).ToList();
-//}

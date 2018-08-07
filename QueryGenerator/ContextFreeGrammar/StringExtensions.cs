@@ -55,7 +55,7 @@ namespace HubPortal.QueryGenerator.Extensions {
             char[] validChars = { '&', '-', ' ', '.' };
             foreach (char character in token) {
                 bool isLetterOrDigit = Char.IsLetterOrDigit(character);
-                bool isValidSpecialChar = Array.IndexOf(validChars, token) > -1;
+                bool isValidSpecialChar = Array.IndexOf(validChars, character) > -1;
                 if (!isLetterOrDigit && !isValidSpecialChar) {
                     return false;
                 }

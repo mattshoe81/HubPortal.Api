@@ -44,6 +44,35 @@ namespace HubPortal.Api.Tests.QueryGenerator {
             Assert.Equal("*** is not a valid Value.", ex.Message);
         }
 
+        [Fact]
+        public void RefineTest_SpecialChar1() {
+            IQuery query = CFGBuilder.GetQuery("process");
+            query.Refine(Symbols.PROCESS_NAME, "&");
+            Assert.Equal("FIND process { processName : '&' }", query.ToString());
+        }
+
+        [Fact]
+        public void RefineTest_SpecialChar2() {
+            IQuery query = CFGBuilder.GetQuery("process");
+            query.Refine(Symbols.PROCESS_NAME, "-");
+            Assert.Equal("FIND process { processName : '-' }", query.ToString());
+        }
+
+        [Fact]
+        public void RefineTest_SpecialChar3() {
+            IQuery query = CFGBuilder.GetQuery("process");
+            query.Refine(Symbols.PROCESS_NAME, " ");
+            Assert.Equal("FIND process { processName : ' ' }", query.ToString());
+        }
+
+        [Fact]
+        public void RefineTest_SpecialChar4() {
+            IQuery query = CFGBuilder.GetQuery("process");
+            query.Refine(Symbols.PROCESS_NAME, ".");
+            Assert.Equal("FIND process { processName : '.' }", query.ToString());
+        }
+
+
 
 
 

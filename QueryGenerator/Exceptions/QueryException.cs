@@ -2,7 +2,10 @@
 
 namespace HubPortal.QueryGenerator.Exceptions {
 
-    internal class QueryException : Exception {
+    /// <summary>
+    /// Base class for all Query exceptions
+    /// </summary>
+    internal abstract class QueryException : Exception {
 
         public QueryException() {
         }

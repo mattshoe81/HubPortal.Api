@@ -5,11 +5,14 @@ using System.Runtime.CompilerServices;
 
 namespace HubPortal.QueryGenerator.ContextFreeGrammar {
 
+    /// <summary>
+    /// Constructs a query according to the context free grammar.
+    /// </summary>
     internal class Query : IQuery {
         private string query { get; set; }
 
         /// <summary>
-        /// Given a valid SearchType, instantiates a CFGFactory.GetQuery.
+        /// Given a valid SearchType, instantiates a Query.
         /// </summary>
         /// <param name="searchType"></param>
         public Query(string searchType) {

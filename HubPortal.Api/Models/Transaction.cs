@@ -2,6 +2,7 @@
 
 namespace HubPortal.Api.Models {
 
+
     public class Transaction {
         public string TransactionID { get; set; }
 

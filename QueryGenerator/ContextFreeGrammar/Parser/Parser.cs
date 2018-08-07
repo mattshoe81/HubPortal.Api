@@ -7,6 +7,9 @@ using System.Runtime.CompilerServices;
 
 namespace HubPortal.QueryGenerator.ContextFreeGrammar {
 
+    /// <summary>
+    /// Recursively parses a Queue of tokens according to a specific context free grammar in order to generate a database query.
+    /// </summary>
     internal class CFGParser : IContextFreeGrammarParser {
 
         /// <summary>
