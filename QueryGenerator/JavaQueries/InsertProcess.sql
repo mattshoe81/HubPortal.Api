@@ -1,12 +1,12 @@
-insert into hts_process 
+insert into hts_process
 (
     process_name,
     source,
     destination,
     trans_type,
     pingable,ping_name
-) 
-values 
+)
+values
 (
     &VALUE_1,
     &VALUE_2,

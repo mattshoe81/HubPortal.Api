@@ -2,6 +2,8 @@
 
     internal class QuerySyntaxException : QueryException {
 
+        #region Public Constructors
+
         public QuerySyntaxException() {
         }
 
@@ -10,5 +12,7 @@
 
         public QuerySyntaxException(string found, string expected) : base($"Expected '{expected}', but found '{found}'") {
         }
+
+        #endregion Public Constructors
     }
 }

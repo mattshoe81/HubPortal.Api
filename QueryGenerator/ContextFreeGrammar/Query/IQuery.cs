@@ -5,20 +5,34 @@
     /// </summary>
     public interface IQuery {
 
+        #region Public Methods
+
         /// <summary>
-        /// Adds the given '<code>Lookup</code>' to <code>this</code>.
-        /// <para>
-        /// For the definition of Lookup, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
+        /// Adds the given '
+        /// <code>
+        /// Lookup
+        /// </code>
+        /// ' to
+        /// <code>
+        /// this
+        /// </code>
+        /// .
+        /// <para>For the definition of Lookup, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="lookup">Valid Lookup</param>
         void AddLookup(string lookup);
 
         /// <summary>
-        /// Adds a <code>Refinement</code> to <code>this</code>.
-        /// <para>
-        /// For the definition of Refinement, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
+        /// Adds a
+        /// <code>
+        /// Refinement
+        /// </code>
+        /// to
+        /// <code>
+        /// this
+        /// </code>
+        /// .
+        /// <para>For the definition of Refinement, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="property">Valid Property</param>
         /// <param name="value">Valid Value</param>
@@ -28,5 +42,7 @@
         /// Convert the CFG query to a string.
         /// </summary>
         string ToString();
+
+        #endregion Public Methods
     }
 }

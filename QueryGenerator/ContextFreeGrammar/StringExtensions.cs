@@ -6,30 +6,22 @@ namespace HubPortal.QueryGenerator.Extensions {
 
     internal static class StringExtensions {
 
-        /// <summary>
-        /// Appends a '<code>Refinement</code>' to <code>this</code>. See 'ContextFreeGrammar.txt' for the definition of '<code>Refinement</code>'.
-        /// </summary>
-        /// <param name="original">this</param>
-        /// <param name="property">name of the property</param>
-        /// <param name="value">value of the property</param>
-        /// <returns>The original query string appended with a refinement</returns>
-        public static string RefineQuery(this string original, string property, string value) {
-            return original + $" {{ {property} : '{value}' }}";
-        }
+        #region Public Methods
 
         /// <summary>
-        /// Returns a formatted query defined by the context free grammar, where <code>this</code> is the search type.
-        /// <code>this</code> MUST be the search type.
-        /// </summary>
-        /// <param name="searchTypeOrNameList"></param>
-        /// <returns>A formatted string according to the context free grammar where <code>#this</code> is the SearchType</returns>
-        internal static string GetCfgQuery(this string searchTypeOrNameList) {
-            if (!searchTypeOrNameList.IsValidTransactionSearch() && !searchTypeOrNameList.IsValidNameList()) throw new QuerySyntaxException(searchTypeOrNameList, "valid TransactionSearch or StringList");
-            return $"FIND {searchTypeOrNameList}";
-        }
-
-        /// <summary>
-        /// Appends the given '<code>Lookup</code>' to <code>this</code>. See 'ContextFreeGrammar.txt' for the definition of '<code>Lookup</code>'.
+        /// Appends the given '
+        /// <code>
+        /// Lookup
+        /// </code>
+        /// ' to
+        /// <code>
+        /// this
+        /// </code>
+        /// . See 'ContextFreeGrammar.txt' for the definition of '
+        /// <code>
+        /// Lookup
+        /// </code>
+        /// '.
         /// </summary>
         /// <param name="original">this</param>
         /// <param name="property">name of the property</param>
@@ -37,32 +29,6 @@ namespace HubPortal.QueryGenerator.Extensions {
         /// <returns>The original query string appended with a refinement</returns>
         public static string AddLookup(this string original, string lookup) {
             return original + $" AND {lookup}";
-        }
-
-        internal static bool IsValidSearchType(this string token) {
-            return token.IsValidTransactionSearch() || token.IsValidNameList();
-        }
-
-        internal static bool IsValidTransactionSearch(this string token) {
-            return token == Symbols.PROCESS || token == Symbols.CLIENT || token == Symbols.SOURCE;
-        }
-
-        internal static bool IsValidNameList(this string token) {
-            return token == Symbols.PROCESS_NAMES || token == Symbols.CLIENT_NAMES || token == Symbols.TRANSACTION_TYPES;
-        }
-
-        public static bool IsValidValue(this string token) {
-            char[] validChars = { '&', '-', ' ', '.' };
-            foreach (char character in token) {
-                bool isLetterOrDigit = Char.IsLetterOrDigit(character);
-                bool isValidSpecialChar = Array.IndexOf(validChars, character) > -1;
-                if (!isLetterOrDigit && !isValidSpecialChar) {
-                    return false;
-                }
-            }
-                
-
-            return true;
         }
 
         public static bool IsValidLookup(this string token) {
@@ -114,5 +80,83 @@ namespace HubPortal.QueryGenerator.Extensions {
                     || token == Symbols.CLIENT_NAME
                     || token == Symbols.SOURCE_NAME;
         }
+
+        public static bool IsValidValue(this string token) {
+            char[] validChars = { '&', '-', ' ', '.' };
+            foreach (char character in token) {
+                bool isLetterOrDigit = Char.IsLetterOrDigit(character);
+                bool isValidSpecialChar = Array.IndexOf(validChars, character) > -1;
+                if (!isLetterOrDigit && !isValidSpecialChar) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Appends a '
+        /// <code>
+        /// Refinement
+        /// </code>
+        /// ' to
+        /// <code>
+        /// this
+        /// </code>
+        /// . See 'ContextFreeGrammar.txt' for the definition of '
+        /// <code>
+        /// Refinement
+        /// </code>
+        /// '.
+        /// </summary>
+        /// <param name="original">this</param>
+        /// <param name="property">name of the property</param>
+        /// <param name="value">value of the property</param>
+        /// <returns>The original query string appended with a refinement</returns>
+        public static string RefineQuery(this string original, string property, string value) {
+            return original + $" {{ {property} : '{value}' }}";
+        }
+
+        #endregion Public Methods
+
+        #region Internal Methods
+
+        /// <summary>
+        /// Returns a formatted query defined by the context free grammar, where
+        /// <code>
+        /// this
+        /// </code>
+        /// is the search type.
+        /// <code>
+        /// this
+        /// </code>
+        /// MUST be the search type.
+        /// </summary>
+        /// <param name="searchTypeOrNameList"></param>
+        /// <returns>
+        /// A formatted string according to the context free grammar where
+        /// <code>
+        /// #this
+        /// </code>
+        /// is the SearchType
+        /// </returns>
+        internal static string GetCfgQuery(this string searchTypeOrNameList) {
+            if (!searchTypeOrNameList.IsValidTransactionSearch() && !searchTypeOrNameList.IsValidNameList()) throw new QuerySyntaxException(searchTypeOrNameList, "valid TransactionSearch or StringList");
+            return $"FIND {searchTypeOrNameList}";
+        }
+
+        internal static bool IsValidNameList(this string token) {
+            return token == Symbols.PROCESS_NAMES || token == Symbols.CLIENT_NAMES || token == Symbols.TRANSACTION_TYPES;
+        }
+
+        internal static bool IsValidSearchType(this string token) {
+            return token.IsValidTransactionSearch() || token.IsValidNameList();
+        }
+
+        internal static bool IsValidTransactionSearch(this string token) {
+            return token == Symbols.PROCESS || token == Symbols.CLIENT || token == Symbols.SOURCE;
+        }
+
+        #endregion Internal Methods
     }
 }

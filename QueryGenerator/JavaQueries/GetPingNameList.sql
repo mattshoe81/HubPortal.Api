@@ -1,2 +1,2 @@
-select process_name 
+select process_name
 from ping_string

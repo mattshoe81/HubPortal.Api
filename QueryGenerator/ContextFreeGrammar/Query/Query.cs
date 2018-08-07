@@ -1,6 +1,7 @@
 ﻿using HubPortal.QueryGenerator.Exceptions;
 using HubPortal.QueryGenerator.Extensions;
 using System.Runtime.CompilerServices;
+
 [assembly: InternalsVisibleTo("HubPortal.Tests")]
 
 namespace HubPortal.QueryGenerator.ContextFreeGrammar {
@@ -9,7 +10,8 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
     /// Constructs a query according to the context free grammar.
     /// </summary>
     internal class Query : IQuery {
-        private string query { get; set; }
+
+        #region Public Constructors
 
         /// <summary>
         /// Given a valid SearchType, instantiates a Query.
@@ -20,11 +22,39 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
             this.query = searchType.GetCfgQuery();
         }
 
+        #endregion Public Constructors
+
+        #region Public Methods
+
         /// <summary>
-        /// Adds a <code>Refinement</code> to <code>this</code>.
-        /// <para>
-        /// For the definition of Refinement, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
+        /// Adds the given '
+        /// <code>
+        /// Lookup
+        /// </code>
+        /// ' to
+        /// <code>
+        /// this
+        /// </code>
+        /// .
+        /// <para>For the definition of Lookup, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
+        /// </summary>
+        /// <param name="lookup">Valid Lookup</param>
+        public void AddLookup(string lookup) {
+            if (!lookup.IsValidLookup()) throw new QuerySyntaxException($"{lookup} is not a valid Lookup");
+            this.query += $" AND {lookup}";
+        }
+
+        /// <summary>
+        /// Adds a
+        /// <code>
+        /// Refinement
+        /// </code>
+        /// to
+        /// <code>
+        /// this
+        /// </code>
+        /// .
+        /// <para>For the definition of Refinement, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="property">Valid Property</param>
         /// <param name="value">Valid Value</param>
@@ -35,22 +65,18 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
         }
 
         /// <summary>
-        /// Adds the given '<code>Lookup</code>' to <code>this</code>.
-        /// <para>
-        /// For the definition of Lookup, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
-        /// </summary>
-        /// <param name="lookup">Valid Lookup</param>
-        public void AddLookup(string lookup) {
-            if (!lookup.IsValidLookup()) throw new QuerySyntaxException($"{lookup} is not a valid Lookup");
-            this.query += $" AND {lookup}";
-        }
-
-        /// <summary>
         /// Convert the CFG query to a string.
         /// </summary>
         public override string ToString() {
             return this.query;
         }
+
+        #endregion Public Methods
+
+        #region Private Properties
+
+        private string query { get; set; }
+
+        #endregion Private Properties
     }
 }

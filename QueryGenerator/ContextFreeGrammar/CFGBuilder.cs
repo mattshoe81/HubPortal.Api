@@ -5,6 +5,8 @@
     /// </summary>
     public class CFGBuilder {
 
+        #region Public Methods
+
         /// <summary>
         /// Get a new instance of a class that implements the IQuery interface.
         /// </summary>
@@ -14,6 +16,10 @@
             return new Query(searchType);
         }
 
+        #endregion Public Methods
+
+        #region Internal Methods
+
         /// <summary>
         /// Get a new instance of a class that implements the IParser interface.
         /// </summary>
@@ -21,5 +27,7 @@
         internal static IContextFreeGrammarParser GetParser() {
             return new CFGParser();
         }
+
+        #endregion Internal Methods
     }
 }

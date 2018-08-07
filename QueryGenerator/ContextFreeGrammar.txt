@@ -11,17 +11,15 @@
 |					**If there are no rewrite rules for a symbol, consider it a terminal symbol**								|
 =================================================================================================================================
 
-
-
-Query → 
+Query →
 		FIND SearchType <Refinement>
-		| FIND SearchType <Refinement> AND Lookup <Refinement>	
+		| FIND SearchType <Refinement> AND Lookup <Refinement>
 
 SearchType →
 		TransactionSearch | StringList
 
 TransactionSearch →
-		process | client | source 
+		process | client | source
 
 StringList →
 		processNames | clientNames | transactionTypes
@@ -33,11 +31,11 @@ Refinement →
 		{ Property : 'Value' }
 
 Value →
-		<Letter | Digit | Space>	
-		
+		<Letter | Digit | Space>
+
 Property →
-		transactionType							| startDate								| endDate								
-		| startTime								| endTime								| minTime								
+		transactionType							| startDate								| endDate
+		| startTime								| endTime								| minTime
 		| pingOptions							| failed								| serverName
 		| sessionId								| ignore								| policyNumber
 		| referralNumber						| csr									| referralDate
@@ -45,20 +43,19 @@ Property →
 		| ctu									| authorizationCode						| accountNumber
 		| orderID								| invoiceNumber							| genericSearchString
 		| claimNumber							| fnolNumber							| includeGenericStringInTransaction
-		| subcompany							| partNumber							| carID	
+		| subcompany							| partNumber							| carID
 		| amount								| workOrderNumber						| workOrderID
 		| warehouseNumber						| shopNumber							| checkpoint
 		| lookupType							| processName							| clientName
 		| maxTime
- 
-Letter → 
-		a | b | c | d | | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |  
+
+Letter →
+		a | b | c | d | | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |
 		A | B | C | D | | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
-		- | & | . 
+		- | & | .
 
 Digit →
 		0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
- 
+
 Space →
 		(the actual space character, no obvious way to show it)
-

@@ -54,7 +54,7 @@
     <None Remove="Queries\ByCheckpoint.sql" />
     <None Remove="Queries\ByClaimNumber.sql" />
     <None Remove="Queries\ByClientName.sql" />
-    <None Remove="Queries\ByCreditCard.sql" />
+    <None Remove="Queries\ByCreditCardNumber.sql" />
     <None Remove="Queries\ByCtu.sql" />
     <None Remove="Queries\ByDestination.sql" />
     <None Remove="Queries\ByEndTime.sql" />
@@ -134,7 +134,7 @@
     <EmbeddedResource Include="Queries\ByCheckpoint.sql" />
     <EmbeddedResource Include="Queries\ByClaimNumber.sql" />
     <EmbeddedResource Include="Queries\ByClientName.sql" />
-    <EmbeddedResource Include="Queries\ByCreditCard.sql" />
+    <EmbeddedResource Include="Queries\ByCreditCardNumber.sql" />
     <EmbeddedResource Include="Queries\ByCtu.sql" />
     <EmbeddedResource Include="Queries\ByDestination.sql" />
     <EmbeddedResource Include="Queries\ByEndTime.sql" />
@@ -162,10 +162,6 @@
     <EmbeddedResource Include="Queries\GetProcessList.sql" />
     <EmbeddedResource Include="Queries\GetTransactions.sql" />
     <EmbeddedResource Include="Queries\GetTransactionTypeList.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="SHFB.XsdDocumentationPlugin" Version="15.10.10" />
   </ItemGroup>
 
 </Project>

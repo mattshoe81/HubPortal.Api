@@ -1,3 +1,3 @@
-select client_name 
-from hts_client 
+select client_name
+from hts_client
 where CLIENT_NAME = @

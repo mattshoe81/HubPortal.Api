@@ -1,2 +1,1 @@
-﻿
-AND ht.PING_FLAG = '@'
+﻿AND ht.PING_FLAG = '@'

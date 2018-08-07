@@ -10,10 +10,12 @@ using System.Reflection;
 namespace HubPortal.Api.DataAccess {
 
     /// <summary>
-    /// Class to provide access to the database through queries constructed with
-    /// <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.IQuery"/> objects
+    /// Class to provide access to the database through queries constructed with <see
+    /// cref="HubPortal.QueryGenerator.ContextFreeGrammar.IQuery"/> objects
     /// </summary>
     public static class TransactionLookupEngine {
+
+        #region Public Methods
 
         /// <summary>
         /// Returns a list of strings containing the names of all the clients in the database.
@@ -34,10 +36,9 @@ namespace HubPortal.Api.DataAccess {
         }
 
         /// <summary>
-        /// Returns a list of all the transactions in the database that match the given refinements in the cfgQuery.
-        /// <para>
-        /// For the definition of the context free grammar, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
+        /// Returns a list of all the transactions in the database that match the given refinements
+        /// in the cfgQuery.
+        /// <para>For the definition of the context free grammar, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="query">Well formatted context free grammar string</param>
         /// <returns>List of Transactions</returns>
@@ -58,11 +59,15 @@ namespace HubPortal.Api.DataAccess {
         /// <summary>
         /// Returns a list of strings containing the names of all the transaction types in the database.
         /// </summary>
-        /// <returns>List of strings containing the names of all the transaction types in the database</returns>
+        /// <returns>
+        /// List of strings containing the names of all the transaction types in the database
+        /// </returns>
         public static IEnumerable<string> GetTransactionTypeList() {
             IQuery query = CFGBuilder.GetQuery(Symbols.TRANSACTION_TYPES);
             return GetListOfString(query);
         }
+
+        #endregion Public Methods
 
         #region Private Members
 
@@ -70,10 +75,9 @@ namespace HubPortal.Api.DataAccess {
         private const string CONN_STRING = @"DATA SOURCE = middleware_dev_db:1536/middev;PERSIST SECURITY INFO=True;USER ID = WBISUPPORT_USR;Password=cwadmin01";
 
         /// <summary>
-        /// Given a context free grammar containing a StringList, returns a list of strings from the database corresponding to the specified StringList.
-        /// <para>
-        /// For the definition of the context free grammar and StringList, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
+        /// Given a context free grammar containing a StringList, returns a list of strings from the
+        /// database corresponding to the specified StringList.
+        /// <para>For the definition of the context free grammar and StringList, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="query">Well formatted context free grammar with a StringList</param>
         /// <returns>List of Transactions</returns>

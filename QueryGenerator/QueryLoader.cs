@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+
 [assembly: InternalsVisibleTo("HubPortal.Tests")]
 
 namespace HubPortal.QueryGenerator {
@@ -18,10 +19,7 @@ namespace HubPortal.QueryGenerator {
 
         /// <summary>
         /// Returns the database query string corresponding to the given Lookup.
-        /// <para>
-        ///     For the definition of Lookup, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
-        ///
+        /// <para>For the definition of Lookup, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="StringList">Valid Lookup</param>
         /// <returns>Database query corresponding to the given Lookup</returns>
@@ -31,10 +29,7 @@ namespace HubPortal.QueryGenerator {
 
         /// <summary>
         /// Returns the database query string corresponding to the given StringList.
-        /// <para>
-        ///     For the definition of StringList, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
-        ///
+        /// <para>For the definition of StringList, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="stringList">Valid StringList</param>
         /// <returns>Database query corresponding to the given StringList</returns>
@@ -62,9 +57,7 @@ namespace HubPortal.QueryGenerator {
 
         /// <summary>
         /// Returns the database query string corresponding to the given Refinement.
-        /// <para>
-        /// For the definition of Refinement, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
+        /// <para>For the definition of Refinement, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="property">Valid Property</param>
         /// <param name="value">Valid Value</param>
@@ -83,9 +76,7 @@ namespace HubPortal.QueryGenerator {
 
         /// <summary>
         /// Returns the database query string corresponding to the given TransactionSearch.
-        /// <para>
-        /// For the definition of TransactionSearch, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/>
-        /// </para>
+        /// <para>For the definition of TransactionSearch, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="transactionSearch">Valid TransactionSearch</param>
         /// <returns>Database query corresponding to the given a valid TransactionSearch</returns>

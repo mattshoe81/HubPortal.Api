@@ -3,18 +3,22 @@ using HubPortal.QueryGenerator.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+
 [assembly: InternalsVisibleTo("HubPortal.Tests")]
 
 namespace HubPortal.QueryGenerator.ContextFreeGrammar {
 
     /// <summary>
-    /// Recursively parses a Queue of tokens according to a specific context free grammar in order to generate a database query.
+    /// Recursively parses a Queue of tokens according to a specific context free grammar in order to
+    /// generate a database query.
     /// </summary>
     internal class CFGParser : IContextFreeGrammarParser {
 
+        #region Public Methods
+
         /// <summary>
-        /// Parse through the given tokens and produce a database query according to the Context Free Grammar,
-        /// based on the information in the tokens.
+        /// Parse through the given tokens and produce a database query according to the Context Free
+        /// Grammar, based on the information in the tokens.
         /// </summary>
         /// <param name="tokens">Tokenized context free grammar</param>
         /// <returns>Database query as a string</returns>
@@ -22,9 +26,12 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
             return ParseQuery(tokens);
         }
 
-        #region Recursive Descent Parsers
+        #endregion Public Methods
+
+        #region Recursive Descent Parsing
 
         /*
+         *
          * Each method is designed to parse exactly one rewrite rule in the Context Free Grammar,
          * and then passes the tokens to the appropriate rewrite rule as they are encountered.
          *
@@ -61,7 +68,7 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
             token = tokens.Dequeue();
             if (token != ":") throw new QuerySyntaxException(token, ":");
             token = tokens.Dequeue();
-            // Need to compare null without string
+            // Need to compare null without string in query
             if (property == Symbols.FAILED && token == "null")
                 query += QueryLoader.GetRefinement(property, token).Replace("'", "").Replace("=", "IS");
             else
@@ -99,6 +106,6 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
             return QueryLoader.GetTransactionSearch(token);
         }
 
-        #endregion Recursive Descent Parsers
+        #endregion Recursive Descent Parsing
     }
 }

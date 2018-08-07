@@ -1,2 +1,1 @@
-﻿
-AND ht.TOTAL_ELAPSED_TIME <= @
+﻿AND ht.TOTAL_ELAPSED_TIME <= @

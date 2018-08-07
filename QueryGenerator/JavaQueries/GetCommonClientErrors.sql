@@ -1,8 +1,8 @@
-select 
-    error_text, 
-    error_action 
-from Hts_ClientErrors 
-where 
+select
+    error_text,
+    error_action
+from Hts_ClientErrors
+where
     client_id = &CLIENT_ID_SUB
-    and 
+    and
     error_Description like &ERROR_DESCRIPTION_SUB

@@ -3,13 +3,16 @@
 namespace HubPortal.QueryGenerator {
 
     /// <summary>
-    /// Provides indirect access to the database implementation through an intermediary context free grammar used to describe
-    /// the criteria of the query.
+    /// Provides indirect access to the database implementation through an intermediary context free
+    /// grammar used to describe the criteria of the query.
     /// </summary>
     public static class QueryEngine {
 
+        #region Public Methods
+
         /// <summary>
-        /// Given a string properly formatted to the specifications of the context free grammar, will return a query to the database implementation.
+        /// Given a string properly formatted to the specifications of the context free grammar, will
+        /// return a query to the database implementation.
         /// </summary>
         /// <param name="query">ContextFreeGrammar.Query object</param>
         /// <returns>A database query</returns>
@@ -20,5 +23,7 @@ namespace HubPortal.QueryGenerator {
              */
             return CFGBuilder.GetParser().Parse(Tokenizer.GetTokens(query));
         }
+
+        #endregion Public Methods
     }
 }
