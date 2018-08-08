@@ -10,8 +10,8 @@ using System.Reflection;
 namespace HubPortal.Api.DataAccess {
 
     /// <summary>
-    /// Class to provide access to the database through queries constructed with <see
-    /// cref="HubPortal.QueryGenerator.ContextFreeGrammar.IQuery"/> objects
+    /// Class to provide access to the database through queries constructed by <see
+    /// cref="HubPortal.QueryGenerator.ContextFreeGrammar.IQuery"/> implementations
     /// </summary>
     public static class TransactionLookupEngine {
 

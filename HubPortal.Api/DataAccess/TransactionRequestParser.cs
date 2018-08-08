@@ -12,6 +12,12 @@ namespace HubPortal.Api.DataAccess {
     /// </summary>
     public static class TransactionRequestParser {
 
+        #region Private Fields
+
+        private const string INCLUDE_ALL = "All";
+
+        #endregion Private Fields
+
         #region Public Methods
 
         /// <summary>
@@ -30,9 +36,8 @@ namespace HubPortal.Api.DataAccess {
             ParseSearchType(query, searchData);
             ParseTransactionDetails(query, searchData);
             ParseLookup(query, searchData);
-            transactions = TransactionLookupEngine.GetTransactions(query);
 
-            return transactions;
+            return TransactionLookupEngine.GetTransactions(query);
         }
 
         #endregion Public Methods
@@ -46,7 +51,7 @@ namespace HubPortal.Api.DataAccess {
             if (!String.IsNullOrEmpty(searchData.FNOLNumber)) query.Refine(Symbols.FNOL_NUMBER, searchData.FNOLNumber);
             if (!String.IsNullOrEmpty(searchData.CSR)) query.Refine(Symbols.CSR, searchData.CSR);
             if (!String.IsNullOrEmpty(searchData.SubCompany)) query.Refine(Symbols.SUB_COMPANY, searchData.SubCompany);
-            if (searchData.ReferralDate != null && searchData.ReferralDate != DateTime.MinValue) query.Refine(Symbols.REFERRAL_DATE, searchData.ReferralDate.ToOracleTimeStamp());
+            if (searchData.ReferralDate != null) query.Refine(Symbols.REFERRAL_DATE, searchData.ReferralDate.ToOracleTimeStamp());
             if (!String.IsNullOrEmpty(searchData.PartNumber)) query.Refine(Symbols.PART_NUMBER, searchData.PartNumber);
             if (!String.IsNullOrEmpty(searchData.ZipCode)) query.Refine(Symbols.ZIP_CODE, searchData.ZipCode);
             if (!String.IsNullOrEmpty(searchData.CarID)) query.Refine(Symbols.CAR_ID, searchData.CarID);
@@ -54,8 +59,8 @@ namespace HubPortal.Api.DataAccess {
         }
 
         private static void ParseCreditCard(IQuery query, TransactionLookupData searchData) {
-            if (!String.IsNullOrEmpty(searchData.CreditCardNumber?.ToString())) query.Refine(Symbols.CREDIT_CARD_NUMBER, searchData.CreditCardNumber?.ToString());
-            if (!String.IsNullOrEmpty(searchData.Amount?.ToString())) query.Refine(Symbols.AMOUNT, searchData.Amount?.ToString());
+            if (searchData.CreditCardNumber != null) query.Refine(Symbols.CREDIT_CARD_NUMBER, searchData.CreditCardNumber?.ToString());
+            if (searchData.Amount != null) query.Refine(Symbols.AMOUNT, searchData.Amount?.ToString());
             if (!String.IsNullOrEmpty(searchData.CTU)) query.Refine(Symbols.CTU, searchData.CTU);
             if (!String.IsNullOrEmpty(searchData.WorkOrderNumber)) query.Refine(Symbols.WORK_ORDER_NUMBER, searchData.WorkOrderNumber);
             if (!String.IsNullOrEmpty(searchData.AuthorizationCode)) query.Refine(Symbols.AUTHORIZATION_CODE, searchData.AuthorizationCode);
@@ -64,7 +69,7 @@ namespace HubPortal.Api.DataAccess {
 
         private static void ParseGeneric(IQuery query, TransactionLookupData searchData) {
             if (!String.IsNullOrEmpty(searchData.GenericSearchString)) query.Refine(Symbols.GENERIC_SEARCH_STRING, searchData.GenericSearchString);
-            if (!String.IsNullOrEmpty(searchData.Checkpoint)) query.Refine(Symbols.CHECKPOINT, searchData.Checkpoint);
+            if (searchData.Checkpoint != INCLUDE_ALL) query.Refine(Symbols.CHECKPOINT, searchData.Checkpoint);
         }
 
         private static void ParseLookup(IQuery query, TransactionLookupData searchData) {
@@ -95,17 +100,17 @@ namespace HubPortal.Api.DataAccess {
         private static void ParseSearchType(IQuery query, TransactionLookupData searchData) {
             switch (searchData.SearchType) {
                 case Symbols.PROCESS:
-                    if (searchData.Process != "All") query.Refine(Symbols.PROCESS_NAME, searchData.Process);
+                    if (searchData.Process != INCLUDE_ALL) query.Refine(Symbols.PROCESS_NAME, searchData.Process);
                     break;
 
                 case Symbols.CLIENT:
-                    if (searchData.Client != "All") query.Refine(Symbols.CLIENT_NAME, searchData.Client);
+                    if (searchData.Client != INCLUDE_ALL) query.Refine(Symbols.CLIENT_NAME, searchData.Client);
                     break;
 
                 case Symbols.SOURCE:
-                    if (searchData.Source != "All") query.Refine(Symbols.SOURCE, searchData.Source);
-                    if (searchData.Destination != "All") query.Refine(Symbols.DESTINATION, searchData.Destination);
-                    if (searchData.TransactionType != "All") query.Refine(Symbols.TRANSACTION_TYPE, searchData.TransactionType);
+                    if (searchData.Source != INCLUDE_ALL) query.Refine(Symbols.SOURCE, searchData.Source);
+                    if (searchData.Destination != INCLUDE_ALL) query.Refine(Symbols.DESTINATION, searchData.Destination);
+                    if (searchData.TransactionType != INCLUDE_ALL) query.Refine(Symbols.TRANSACTION_TYPE, searchData.TransactionType);
                     break;
 
                 default:
@@ -119,12 +124,12 @@ namespace HubPortal.Api.DataAccess {
         }
 
         private static void ParseTransactionDetails(IQuery query, TransactionLookupData searchData) {
-            query.Refine(Symbols.START_TIME, searchData.StartTime.ToOracleTimeStamp());
-            query.Refine(Symbols.END_TIME, searchData.EndTime.ToOracleTimeStamp());
-            if (!String.IsNullOrEmpty(searchData.MinTime?.ToString())) query.Refine(Symbols.MIN_TIME, searchData.MinTime?.ToString());
-            if (!String.IsNullOrEmpty(searchData.MaxTime?.ToString())) query.Refine(Symbols.MAX_TIME, searchData.MaxTime?.ToString());
-            if (!String.IsNullOrEmpty(searchData.PingOptions)) query.Refine(Symbols.PING_OPTION, searchData.PingOptions);
-            if (!String.IsNullOrEmpty(searchData.Failed)) query.Refine(Symbols.FAILED, searchData.Failed);
+            if (searchData.StartTime != null) query.Refine(Symbols.START_TIME, searchData.StartTime.ToOracleTimeStamp());
+            if (searchData.EndTime != null) query.Refine(Symbols.END_TIME, searchData.EndTime.ToOracleTimeStamp());
+            if (searchData.MinTime != null) query.Refine(Symbols.MIN_TIME, searchData.MinTime?.ToString());
+            if (searchData.MaxTime != null) query.Refine(Symbols.MAX_TIME, searchData.MaxTime?.ToString());
+            if (searchData.PingOptions != INCLUDE_ALL) query.Refine(Symbols.PING_OPTION, searchData.PingOptions);
+            if (searchData.Failed != INCLUDE_ALL) query.Refine(Symbols.FAILED, searchData.Failed);
             if (!String.IsNullOrEmpty(searchData.ServerName)) query.Refine(Symbols.SERVER_NAME, searchData.ServerName);
             if (!String.IsNullOrEmpty(searchData.SessionID)) query.Refine(Symbols.SESSION_ID, searchData.SessionID);
         }

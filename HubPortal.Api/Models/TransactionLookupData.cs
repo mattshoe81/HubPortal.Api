@@ -21,7 +21,7 @@ namespace HubPortal.Api.Models {
         public string CSR { get; set; }
         public string CTU { get; set; }
         public string Destination { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
         public string Failed { get; set; }
         public string FNOLNumber { get; set; }
         public string FullListing { get; set; }
@@ -37,14 +37,14 @@ namespace HubPortal.Api.Models {
         public string PolicyNumber { get; set; }
         public string Process { get; set; }
         public string PromoCode { get; set; }
-        public DateTime ReferralDate { get; set; }
+        public DateTime? ReferralDate { get; set; }
         public string ReferralNumber { get; set; }
         public string SearchType { get; set; }
         public string ServerName { get; set; }
         public string SessionID { get; set; }
         public string ShopNumber { get; set; }
         public string Source { get; set; }
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
         public string SubCompany { get; set; }
         public IEnumerable<Transaction> Transactions { get; set; }
         public string TransactionsPerPage { get; set; }

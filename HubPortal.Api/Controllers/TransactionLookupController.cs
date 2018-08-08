@@ -25,18 +25,14 @@ namespace HubPortal.Api.Controllers {
 
         /// <summary>
         /// Given raw form data with fields matching <see
-        /// cref="HubPortal.Api.Models.TransactionLookupData"/>, this call will return the same <see
-        /// cref="HubPortal.Api.Models.TransactionLookupData"/> object with the transactions field
-        /// populated with a list of all transactions in the database that satisfy the criteria
-        /// specified in the posted form.
+        /// cref="HubPortal.Api.Models.TransactionLookupData"/>, this call will return a list of
+        /// transactions that satisfy the criteria specified in the posted form.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
         [HttpPost("Post")]
         public JsonResult FindTransactions([FromBody]TransactionLookupData data) {
-            data.Transactions = TransactionRequestParser.GetTransactions(data);
-
-            return Json(data);
+            return Json(TransactionRequestParser.GetTransactions(data));
         }
 
         // GET: api/<controller>
