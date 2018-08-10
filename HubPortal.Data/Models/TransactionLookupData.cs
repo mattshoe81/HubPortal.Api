@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HubPortal.Api.Models {
+namespace HubPortal.Data.Models {
 
     /// <summary>
     /// Data used to specify the criteria by which to collect transactions during the transaction lookup.

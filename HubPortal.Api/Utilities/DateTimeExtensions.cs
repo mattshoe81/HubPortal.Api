@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace HubPortal.Api.Extensions {
+namespace HubPortal.Api.Utilities {
 
     public static class DateTimeExtensions {
 
@@ -20,12 +20,11 @@ namespace HubPortal.Api.Extensions {
         /// <summary>
         /// Given an Oracle Timestamp string, generates an equivalent DateTime instance.
         /// </summary>
-        /// <param name="date"></param>
+        /// <param name="date">     </param>
         /// <param name="timestamp">Oracle Timestamp string</param>
         /// <returns>DateTime instance equivalent to the given Oracle Timestamp</returns>
         public static DateTime FromOracleTimeStamp(this DateTime? date, string timestamp) {
             string format = String.Format("yy-MMM-dd hh.mm.ss.fffffff{0} tt", timestamp.Substring(26, 2));
-
             return DateTime.ParseExact(timestamp.ToUpper(), format, CultureInfo.InvariantCulture);
         }
 
@@ -38,7 +37,6 @@ namespace HubPortal.Api.Extensions {
             string day = date?.Day.ToString().PadLeft(2, '0');
             string month = date?.ToString("MMM");
             string year = date?.ToString("yy");
-
             return $"{day}-{month}-{year}";
         }
 
@@ -56,7 +54,6 @@ namespace HubPortal.Api.Extensions {
             string second = date?.Second.ToString().PadLeft(2, '0');
             string milli = date?.Millisecond.ToString().PadRight(9, '0');
             string amPm = date?.ToString("tt", CultureInfo.InvariantCulture);
-
             return $"{day}-{month}-{year} {hour}.{minute}.{second}.{milli} {amPm}";
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HubPortal.Api.Models {
+namespace HubPortal.Data.Models {
 
     public class Transaction {
 
@@ -15,7 +15,7 @@ namespace HubPortal.Api.Models {
         public decimal? TotalElapsedTime { get; set; }
         public bool? TransactionCompleted { get; set; }
         public string TransactionID { get; set; }
-        public DateTime TransactionTime { get; set; }
+        public DateTime? TransactionTime { get; set; }
         public string TransactionTypeName { get; set; }
         public string Url { get; set; }
 

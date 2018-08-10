@@ -8,21 +8,6 @@
         #region Public Methods
 
         /// <summary>
-        /// Adds the given '
-        /// <code>
-        /// Lookup
-        /// </code>
-        /// ' to
-        /// <code>
-        /// this
-        /// </code>
-        /// .
-        /// <para>For the definition of Lookup, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
-        /// </summary>
-        /// <param name="lookup">Valid Lookup</param>
-        void AddLookup(string lookup);
-
-        /// <summary>
         /// Adds a
         /// <code>
         /// Refinement
@@ -35,12 +20,19 @@
         /// <para>For the definition of Refinement, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
         /// </summary>
         /// <param name="property">Valid Property</param>
-        /// <param name="value">Valid Value</param>
+        /// <param name="value">   Valid Value</param>
         void Refine(string property, string value);
 
         /// <summary>
-        /// Convert the CFG query to a string.
+        /// Convert this into its context free grammar query representation.
         /// </summary>
+        /// <returns>this represented as a well formed context free grammar query</returns>
+        string ToCFGString();
+
+        /// <summary>
+        /// Convert the CFG query to a Database query string.
+        /// </summary>
+        /// <returns>this as a database query</returns>
         string ToString();
 
         #endregion Public Methods

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HubPortal.Data\HubPortal.Data.csproj" />
     <ProjectReference Include="..\QueryGenerator\HubPortal.QueryGenerator.csproj" />
   </ItemGroup>
 

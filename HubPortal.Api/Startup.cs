@@ -30,7 +30,7 @@ namespace HubPortal.Api {
             app.UseMvc(routes => {
                 routes.MapRoute(
                     "default",
-                    "api/{controller=TransactionLookup}/{action=Get}/{id?}"
+                    "api/{controller=Transaction}/{action=Get}/{id?}"
                     );
             });
         }
@@ -42,11 +42,7 @@ namespace HubPortal.Api {
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-            // Add service and create Policy with options
             services.AddMvc();
-            //.AddJsonOptions(options => {
-            //    options.SerializerSettings.DateFormatString = "yyyy-MM-dd'T'HH:mm:ss.fff'Z'";
-            //});
         }
 
         #endregion Public Methods

@@ -23,4 +23,4 @@ where (
 	and pr.trans_type = tr.trans_type_id
 	and pr.source = cl.client_id
 	and pr.destination = cli.client_id
-	AND ROWNUM < 10000
+	AND ROWNUM <= 10000

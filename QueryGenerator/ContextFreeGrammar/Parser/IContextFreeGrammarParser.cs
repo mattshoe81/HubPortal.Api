@@ -3,8 +3,8 @@
 namespace HubPortal.QueryGenerator.ContextFreeGrammar {
 
     /// <summary>
-    /// Recursively parses a Queue of tokens according to a specific context free grammar in order to
-    /// generate a database query.
+    /// Parses a Queue of tokens according to a specific context free grammar in order to generate a
+    /// database query.
     /// </summary>
     public interface IContextFreeGrammarParser {
 

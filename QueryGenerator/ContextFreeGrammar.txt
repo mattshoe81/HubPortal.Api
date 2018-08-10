@@ -1,6 +1,6 @@
 ﻿=================================================================================================================================
-|								Context Free Grammar: Hub Portal Transaction Queries											|
-|						*Grammar to simplify complex transaction queries independent of database*								|
+|									  Context Free Grammar: Hub Portal Queries													|
+|							*Grammar to simplify complex queries independent of database*										|
 |===============================================================================================================================|
 |																																|
 |		LEGEND:																													|
@@ -8,30 +8,27 @@
 |			| : Means OR																										|
 |			→ : Specifies the definition for a rewrite rule																		|
 |																																|
-|					**If there are no rewrite rules for a symbol, consider it a terminal symbol**								|
+|							  **camelCase and UPPERCASE indicate terminal symbols**												|
 =================================================================================================================================
 
 Query →
-		FIND SearchType <Refinement>
-		| FIND SearchType <Refinement> AND Lookup <Refinement>
+		FINDALL SearchType WHERE <Refinement>
+		| GET Item WHERE <Refinement>
 
 SearchType →
-		TransactionSearch | StringList
-
-TransactionSearch →
-		process | client | source
+		StringList | transaction | outage | success | process | checkpoint
 
 StringList →
-		processNames | clientNames | transactionTypes
+		processList | clientList | transactionTypeList
 
-Lookup →
-		coverage | creditCard | wholesale | shop | generic
+Item →
+		process | checkpoint | transaction | transactionType | client
 
 Refinement →
 		{ Property : 'Value' }
 
 Value →
-		<Letter | Digit | Space>
+		<Character | Digit>
 
 Property →
 		transactionType							| startDate								| endDate
@@ -49,13 +46,8 @@ Property →
 		| lookupType							| processName							| clientName
 		| maxTime
 
-Letter →
-		a | b | c | d | | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |
-		A | B | C | D | | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
-		- | & | .
+Character →
+		any character EXCEPT for single quote
 
 Digit →
 		0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-
-Space →
-		(the actual space character, no obvious way to show it)
