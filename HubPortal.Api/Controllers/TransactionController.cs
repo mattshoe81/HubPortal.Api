@@ -1,14 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using HubPortal.Data.Models;
-using HubPortal.Data;
-using Microsoft.AspNetCore.Mvc;
+
 using HubPortal.Api.Utilities;
+using HubPortal.Data;
+using HubPortal.Data.Models;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace HubPortal.Api.Controllers {
 
-    [Route("api/[controller]")]
     public class TransactionController : Controller {
+
+        public string Get() {
+            return "Proceed with the interwebbing";
+        }
+
+        public JsonResult GetById(string transactionid) {
+            TransactionDetail detail = TransactionEngine.GetDetail(transactionid);
+            return Json(detail);
+        }
+
+        /// <summary>
+        /// Returns a list of the names of all Transaction Types in the database.
+        /// </summary>
+        /// <returns>List of Transaction Type names</returns>
+        public IEnumerable<string> GetTypes() {
+            List<string> transactionTypes = TransactionEngine.GetTransactionTypeList().ToList();
+            transactionTypes.RemoveAll(transactionType => transactionType == null);
+            return transactionTypes;
+        }
 
         /// <summary>
         /// Given raw form data with fields matching <see
@@ -17,27 +37,10 @@ namespace HubPortal.Api.Controllers {
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        [HttpPost("FindTransactions")]
-        public JsonResult FindTransactions([FromBody]TransactionLookupData data) {
+        public JsonResult PostData([FromBody]TransactionLookupData data) {
             List<Transaction> transactions = TransactionLookupRequestParser.GetTransactions(data).ToList();
             transactions.RemoveAll(transaction => transaction == null);
             return Json(transactions);
-        }
-
-        [HttpGet]
-        public string Get() {
-            return "The API is up and running";
-        }
-
-        /// <summary>
-        /// Returns a list of the names of all Transaction Types in the database.
-        /// </summary>
-        /// <returns>List of Transaction Type names</returns>
-        [HttpGet("GetTypes")]
-        public IEnumerable<string> GetTypes() {
-            List<string> transactionTypes = TransactionEngine.GetTransactionTypeList().ToList();
-            transactionTypes.RemoveAll(transactionType => transactionType == null);
-            return transactionTypes;
         }
     }
 }

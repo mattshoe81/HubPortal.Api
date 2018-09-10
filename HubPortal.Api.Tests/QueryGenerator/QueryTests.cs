@@ -9,8 +9,6 @@ namespace HubPortal.Api.Tests.QueryGenerator {
 
     public class QueryTests {
 
-        #region Public Methods
-
         [Fact]
         public void RefineTest_PropertyException() {
             IQuery query = QueryBuilder.GetQuery("FINDALL", "process");
@@ -73,7 +71,5 @@ namespace HubPortal.Api.Tests.QueryGenerator {
 
             Assert.Equal("FIND process { processName : '1st Auto Claims ESL' } { startTime : 'noon oclock' } { endTime : 'midnight' } { serverName : 'the server' } { transactionType : 'something' } AND coverage { policyNumber : '012345' } { claimNumber : '0987654323' } { referralNumber : 'the number' }", query.ToString());
         }
-
-        #endregion Public Methods
     }
 }

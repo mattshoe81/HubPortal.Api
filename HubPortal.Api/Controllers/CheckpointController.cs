@@ -1,46 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using HubPortal.Data;
+using HubPortal.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace HubPortal.Api.Controllers
-{
+namespace HubPortal.Api.Controllers {
+
     [Route("api/[controller]")]
-    public class CheckpointController : Controller
-    {
+    public class CheckpointController : Controller {
+
         // GET: api/<controller>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
+        [HttpGet("Get")]
+        public JsonResult Get(string transactionid) {
+            IEnumerable<Checkpoint> checkpoints = CheckpointEngine.GetCheckpoints(transactionid);
+            return Json(checkpoints);
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+        [HttpGet("GetEmbeddedMessage")]
+        public JsonResult GetEmbeddedMessage(string checkpointid, string location) {
+            return Json("the embedded message for the checkpoint");
         }
 
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+        [HttpGet("GetMessage")]
+        public JsonResult GetMessage(string checkpointid) {
+            return Json(new string[] { "the message for the checkpoint" });
         }
     }
 }

@@ -8,16 +8,22 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
     /// </summary>
     public interface IContextFreeGrammarParser {
 
-        #region Public Methods
-
         /// <summary>
         /// Parse through the given tokens and produce a database query according to the Context Free
         /// Grammar, based on the information in the tokens.
         /// </summary>
         /// <param name="tokens">Tokenized context free grammar</param>
         /// <returns>Database query as a string</returns>
-        string Parse(Queue<string> tokens);
+        object Parse(Queue<string> tokens);
 
-        #endregion Public Methods
+        void ParseItem(Queue<string> tokens);
+
+        void ParseQuery(Queue<string> tokens);
+
+        void ParseRefinement(Queue<string> tokens);
+
+        void ParseSearchType(Queue<string> tokens);
+
+        void ParseStringList(Queue<string> tokens);
     }
 }

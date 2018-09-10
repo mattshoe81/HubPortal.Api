@@ -5,8 +5,6 @@ namespace HubPortal.Api {
 
     public class Program {
 
-        #region Public Methods
-
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
@@ -15,7 +13,5 @@ namespace HubPortal.Api {
         public static void Main(string[] args) {
             BuildWebHost(args).Run();
         }
-
-        #endregion Public Methods
     }
 }

@@ -16,8 +16,6 @@ namespace HubPortal.QueryGenerator {
     /// </summary>
     internal static class QueryLoader {
 
-        #region Internal Methods
-
         /// <summary>
         /// Gets the query to get the given Item from the database.
         /// </summary>
@@ -31,6 +29,7 @@ namespace HubPortal.QueryGenerator {
             } catch {
                 throw new QueryLoaderException($"Cannot load resource for Item '{item}'");
             }
+
             return query;
         }
 
@@ -120,10 +119,6 @@ namespace HubPortal.QueryGenerator {
             return search;
         }
 
-        #endregion Internal Methods
-
-        #region Private Methods
-
         /// <summary>
         /// Returns the query to get checkpoints from the database
         /// </summary>
@@ -185,7 +180,5 @@ namespace HubPortal.QueryGenerator {
         private static string GetTransactionQuery() {
             return GetDatabaseQuery("GetTransactions");
         }
-
-        #endregion Private Methods
     }
 }

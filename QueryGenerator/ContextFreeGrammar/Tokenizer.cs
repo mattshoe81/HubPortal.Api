@@ -9,8 +9,6 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
     /// </summary>
     internal static class Tokenizer {
 
-        #region Public Methods
-
         /// <summary>
         /// Given a string that satisfies the context free grammar, returns a Queue containing the tokens.
         /// </summary>
@@ -23,7 +21,5 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
                                            : new string[] { element })  // Keep the entire item
                      .SelectMany(element => element).ToList());
         }
-
-        #endregion Public Methods
     }
 }

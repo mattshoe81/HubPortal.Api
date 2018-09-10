@@ -12,6 +12,7 @@ namespace HubPortal.Api.Utilities {
     /// returns the transactions that satisfy those criteria.
     /// </summary>
     public static class TransactionLookupRequestParser {
+        private const string INCLUDE_ALL = "All";
 
         /// <summary>
         /// Given the raw <see cref="HubPortal.Api.Models.TransactionLookupData"/> posted by the
@@ -33,7 +34,17 @@ namespace HubPortal.Api.Utilities {
             return TransactionEngine.GetTransactions(query);
         }
 
-        private const string INCLUDE_ALL = "All";
+        private static bool IsUsable(string value) {
+            return !String.IsNullOrEmpty(value) && value != TransactionLookupRequestParser.INCLUDE_ALL;
+        }
+
+        private static bool IsUsable(int? value) {
+            return value != null;
+        }
+
+        private static bool IsUsable(DateTime? value) {
+            return value != null;
+        }
 
         private static void ParseCoverage(IQuery query, TransactionLookupData searchData) {
             ParseRefinement(query, Symbols.POLICY_NUMBER, searchData.PolicyNumber);
@@ -88,15 +99,15 @@ namespace HubPortal.Api.Utilities {
         }
 
         private static void ParseRefinement(IQuery query, string property, int? value) {
-            if (ShouldInclude(value)) query.Refine(property, value.ToString());
+            if (IsUsable(value)) query.Refine(property, value.ToString());
         }
 
         private static void ParseRefinement(IQuery query, string property, DateTime? value) {
-            if (ShouldInclude(value)) query.Refine(property, value.ToOracleTimeStamp());
+            if (IsUsable(value)) query.Refine(property, value.ToOracleTimeStamp());
         }
 
         private static void ParseRefinement(IQuery query, string property, string value) {
-            if (ShouldInclude(value)) query.Refine(property, value);
+            if (IsUsable(value)) query.Refine(property, value);
         }
 
         private static void ParseSearchType(IQuery query, TransactionLookupData searchData) {
@@ -140,18 +151,6 @@ namespace HubPortal.Api.Utilities {
             ParseRefinement(query, Symbols.ACCOUNT_NUMBER, searchData.AccountNumber);
             ParseRefinement(query, Symbols.WAREHOUSE_NUMBER, searchData.WarehouseNumber);
             ParseRefinement(query, Symbols.ORDER_ID, searchData.OrderID);
-        }
-
-        private static bool ShouldInclude(string value) {
-            return !String.IsNullOrEmpty(value) && value != TransactionLookupRequestParser.INCLUDE_ALL;
-        }
-
-        private static bool ShouldInclude(int? value) {
-            return value != null;
-        }
-
-        private static bool ShouldInclude(DateTime? value) {
-            return value != null;
         }
     }
 }

@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/transaction",
+      "launchUrl": "api/transaction/get",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

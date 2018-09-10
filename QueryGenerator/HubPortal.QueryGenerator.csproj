@@ -81,15 +81,19 @@
     <None Remove="Queries\ByStartDate.sql" />
     <None Remove="Queries\ByStartTime.sql" />
     <None Remove="Queries\BySubCompany.sql" />
+    <None Remove="Queries\ByTransactionid.sql" />
     <None Remove="Queries\ByTransactionType.sql" />
     <None Remove="Queries\ByWarehouseNumber.sql" />
     <None Remove="Queries\ByWorkOrderID.sql" />
     <None Remove="Queries\ByWorkOrderNumber.sql" />
     <None Remove="Queries\ByZipCode.sql" />
+    <None Remove="Queries\GetCheckpoints.sql" />
     <None Remove="Queries\GetClientList.sql" />
     <None Remove="Queries\GetProcessList.sql" />
+    <None Remove="Queries\GetTransactionDetail.sql" />
     <None Remove="Queries\GetTransactions.sql" />
     <None Remove="Queries\GetTransactionTypeList.sql" />
+    <None Remove="Queries\GetXRefData.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -169,15 +173,19 @@
     <EmbeddedResource Include="Queries\ByStartDate.sql" />
     <EmbeddedResource Include="Queries\ByStartTime.sql" />
     <EmbeddedResource Include="Queries\BySubCompany.sql" />
+    <EmbeddedResource Include="Queries\ByTransactionid.sql" />
     <EmbeddedResource Include="Queries\ByTransactionType.sql" />
     <EmbeddedResource Include="Queries\ByWarehouseNumber.sql" />
     <EmbeddedResource Include="Queries\ByWorkOrderID.sql" />
     <EmbeddedResource Include="Queries\ByWorkOrderNumber.sql" />
     <EmbeddedResource Include="Queries\ByZipCode.sql" />
+    <EmbeddedResource Include="Queries\GetCheckpoints.sql" />
     <EmbeddedResource Include="Queries\GetClientList.sql" />
+    <EmbeddedResource Include="Queries\GetTransactionDetail.sql" />
     <EmbeddedResource Include="Queries\GetProcessList.sql" />
     <EmbeddedResource Include="Queries\GetTransactions.sql" />
     <EmbeddedResource Include="Queries\GetTransactionTypeList.sql" />
+    <EmbeddedResource Include="Queries\GetXRefData.sql" />
   </ItemGroup>
 
 </Project>

@@ -13,9 +13,8 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
     /// Parses a Queue of tokens according to a specific context free grammar in order to generate a
     /// database query.
     /// </summary>
-    internal class CFGParser : IContextFreeGrammarParser {
-
-        #region Public Methods
+    internal class OracleParser : IContextFreeGrammarParser {
+        private string query = "";
 
         /// <summary>
         /// Parse through the given tokens and produce a database query according to the Context Free
@@ -23,11 +22,10 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
         /// </summary>
         /// <param name="tokens">Tokenized context free grammar</param>
         /// <returns>Database query as a string</returns>
-        public string Parse(Queue<string> tokens) {
-            return ParseQuery(tokens);
+        public object Parse(Queue<string> tokens) {
+            ParseQuery(tokens);
+            return this.query;
         }
-
-        #endregion Public Methods
 
         /*
          *
@@ -38,81 +36,75 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
          *
          */
 
-        #region Private Methods
-
-        private string ParseItem(Queue<string> tokens, string query) {
+        public void ParseItem(Queue<string> tokens) {
             string token = tokens.Dequeue();
-            if (!token.IsValidItem())
-                throw new QuerySyntaxException($"{token} is not a valid Item");
-            return QueryLoader.GetItemQuery(token);
+            this.query = QueryLoader.GetItemQuery(token);
+            //Dequeue WHERE
+            tokens.Dequeue();
+            while (tokens.Count > 0) {
+                ParseRefinement(tokens);
+            }
         }
 
-        private string ParseQuery(Queue<string> tokens) {
+        public void ParseQuery(Queue<string> tokens) {
             string token = tokens.Dequeue();
-            if (token != "FINDALL" && token != "GET")
-                throw new QuerySyntaxException($"Invalid token at {token}. Expected GET or FINDALL.");
 
             string query = String.Empty;
 
             if (token == "GET")
-                query = ParseItem(tokens, query);
+                ParseItem(tokens);
             else if (tokens.Peek().IsValidSearchType())
-                query = ParseSearchType(tokens, query);
+                ParseSearchType(tokens);
             else
                 throw new QuerySyntaxException($"{tokens.Peek()} is not a valid token.");
-
-            return query;
         }
 
-        private string ParseRefinement(Queue<string> tokens, string query) {
+        public void ParseRefinement(Queue<string> tokens) {
             // Dequeue left curly brace token
             string token = tokens.Dequeue();
             if (token != "{") throw new QuerySyntaxException(token, "{");
             // Dequeue Property token
             token = tokens.Dequeue();
-            if (!token.IsValidProperty()) throw new QuerySyntaxException($"{token} is not a valid property name");
             string property = token;
             // Dequeue colon token
             token = tokens.Dequeue();
             if (token != ":") throw new QuerySyntaxException(token, ":");
             // Dequeue Value token
             token = tokens.Dequeue();
+
+            // Kluge to find checkpoints by transaction id
+            if (property == Symbols.TRANSACTION_ID) {
+                this.query = this.query.Replace("@", token);
+                if (tokens.Dequeue() != "}") throw new QuerySyntaxException(token, "}");
+                return;
+            }
             // If the token is FAILED, the oracle query must compare null, so it must remove quotes
             // and replace = with IS
             if (property == Symbols.FAILED && token == "null")
-                query += QueryLoader.GetRefinement(property, token).Replace("'", "").Replace("=", "IS");
+                this.query += QueryLoader.GetRefinement(property, token).Replace("'", "").Replace("=", "IS");
             else
-                query += QueryLoader.GetRefinement(property, token);
+                this.query += QueryLoader.GetRefinement(property, token);
             // Dequeue the right curly brace token
             token = tokens.Dequeue();
             if (token != "}") throw new QuerySyntaxException(token, "}");
-
-            return query;
         }
 
-        private string ParseSearchType(Queue<string> tokens, string query) {
-            if (!tokens.Peek().IsValidSearchType())
-                throw new QuerySyntaxException($"{tokens.Peek()} is not a valid SearchType");
-
+        public void ParseSearchType(Queue<string> tokens) {
             // If next token is a StringList, parse that
             if (tokens.Peek().IsValidStringList()) {
-                query = ParseStringList(tokens, query);
+                ParseStringList(tokens);
             } else {
                 string token = tokens.Dequeue();
-                query = QueryLoader.GetSearchTypeQuery(token);
+                this.query = QueryLoader.GetSearchTypeQuery(token);
                 // Dequeue the WHERE token
                 tokens.Dequeue();
-                while (tokens.Count > 0) query = ParseRefinement(tokens, query);
-                if (token == Symbols.TRANSACTION) query += "\n)\n ORDER BY ht.TRANS_START_TIMESTAMP";
+                while (tokens.Count > 0) ParseRefinement(tokens);
+                if (token == Symbols.TRANSACTION) this.query += "\n)\n ORDER BY ht.TRANS_START_TIMESTAMP";
             }
-
-            return query;
         }
 
-        private string ParseStringList(Queue<string> tokens, string query) {
-            return query += QueryLoader.GetStringList(tokens.Dequeue());
+        public void ParseStringList(Queue<string> tokens) {
+            this.query += QueryLoader.GetStringList(tokens.Dequeue());
         }
-
-        #endregion Private Methods
     }
 }

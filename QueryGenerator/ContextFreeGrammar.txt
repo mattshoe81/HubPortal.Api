@@ -22,7 +22,7 @@ StringList →
 		processList | clientList | transactionTypeList
 
 Item →
-		process | checkpoint | transaction | transactionType | client
+		process | checkpoint | transaction | transactionType | client | processDetail
 
 Refinement →
 		{ Property : 'Value' }
@@ -44,7 +44,7 @@ Property →
 		| amount								| workOrderNumber						| workOrderID
 		| warehouseNumber						| shopNumber							| checkpoint
 		| lookupType							| processName							| clientName
-		| maxTime
+		| maxTime								| detail								| transactionid
 
 Character →
 		any character EXCEPT for single quote

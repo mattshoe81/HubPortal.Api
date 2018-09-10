@@ -4,8 +4,6 @@ namespace HubPortal.QueryGenerator.Extensions {
 
     internal static class StringExtensions {
 
-        #region Internal Methods
-
         internal static bool IsValidItem(this string token) {
             return token == Symbols.PROCESS
                 || token == Symbols.CHECKPOINT
@@ -70,7 +68,5 @@ namespace HubPortal.QueryGenerator.Extensions {
                 || token == Symbols.CLIENT_LIST
                 || token == Symbols.TRANSACTION_TYPE_LIST;
         }
-
-        #endregion Internal Methods
     }
 }

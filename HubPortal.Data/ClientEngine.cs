@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HubPortal.QueryGenerator.ContextFreeGrammar;
+﻿using System.Collections.Generic;
+
 using HubPortal.Data.Utilities;
+using HubPortal.QueryGenerator.ContextFreeGrammar;
 
 namespace HubPortal.Data {
 
@@ -15,7 +13,7 @@ namespace HubPortal.Data {
         /// <returns>List of strings containing the names of all the clients in the database</returns>
         public static IEnumerable<string> GetClientList() {
             IQuery query = QueryBuilder.GetQuery(Symbols.FINDALL, Symbols.CLIENT_LIST);
-            return DataUtil.GetListOfString(query);
+            return OracleDataUtil.GetListOfString(query);
         }
     }
 }

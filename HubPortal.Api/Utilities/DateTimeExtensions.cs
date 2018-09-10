@@ -5,8 +5,6 @@ namespace HubPortal.Api.Utilities {
 
     public static class DateTimeExtensions {
 
-        #region Public Methods
-
         /// <summary>
         /// Given an Oracle Date string, generates an equivalent DateTime instance.
         /// </summary>
@@ -56,7 +54,5 @@ namespace HubPortal.Api.Utilities {
             string amPm = date?.ToString("tt", CultureInfo.InvariantCulture);
             return $"{day}-{month}-{year} {hour}.{minute}.{second}.{milli} {amPm}";
         }
-
-        #endregion Public Methods
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 using HubPortal.Data.Models;
 using HubPortal.Data.Utilities;
@@ -17,6 +15,54 @@ namespace HubPortal.Data {
     /// </summary>
     public static class TransactionEngine {
 
+        public static TransactionDetail GetDetail(string transactionid) {
+            IQuery query = QueryBuilder.GetQuery(Symbols.GET, Symbols.TRANSACTION_DETAIL).Refine(Symbols.TRANSACTION_ID, transactionid);
+            TransactionDetail detail = new TransactionDetail();
+            using (OracleConnection connection = new OracleConnection(OracleDataUtil.CONN_STRING)) {
+                connection.Open();
+                string dbQuery = query.ToString();
+                using (OracleCommand command = new OracleCommand(dbQuery, connection)) {
+                    OracleDataReader reader = command.ExecuteReader();
+                    try {
+                        reader.Read();
+                        if (reader.HasRows) {
+                            detail.TransactionId = OracleDataUtil.ReadString(reader, "TRANS_ID");
+                            detail.ProcessName = OracleDataUtil.ReadString(reader, "PROCESS_NAME");
+                            detail.TransactionType = OracleDataUtil.ReadString(reader, "TRANSACTION_TYPE_NAME");
+                            detail.TransactionTime = OracleDataUtil.ReadDateTime(reader, "TRANS_TIME");
+                            detail.Completed = OracleDataUtil.ReadString(reader, "TRANS_COMPLETED");
+                            detail.ElapsedTime = OracleDataUtil.ReadNullableInt(reader, "TOTAL_ELAPSED_TIME");
+                            detail.URL = OracleDataUtil.ReadString(reader, "URL");
+                            detail.Source = OracleDataUtil.ReadString(reader, "SOURCE");
+                            detail.Destination = OracleDataUtil.ReadString(reader, "DESTINATION");
+                            detail.Ping = OracleDataUtil.ReadString(reader, "PING_FLAG");
+                            detail.ServiceLayer = OracleDataUtil.ReadString(reader, "SERVICE_LAYER");
+                            detail.Successful = OracleDataUtil.ReadString(reader, "IS_SUCCESSFUL");
+                            detail.SessionID = OracleDataUtil.ReadString(reader, "SESSION_ID");
+                            detail.SourceType = OracleDataUtil.ReadString(reader, "SOURCE_CONNECTOR");
+                            detail.DestinationType = OracleDataUtil.ReadString(reader, "DESTINATION_CONNECTOR");
+                        }
+                    } finally {
+                        reader.Close();
+                    }
+                }
+                query = QueryBuilder.GetQuery(Symbols.GET, Symbols.XREF_DATA).Refine(Symbols.TRANSACTION_ID, transactionid);
+                dbQuery = query.ToString();
+                Dictionary<string, string> xrefData = new Dictionary<string, string>();
+                using (OracleCommand command = new OracleCommand(dbQuery, connection)) {
+                    OracleDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) {
+                        string key = OracleDataUtil.ReadString(reader, "XREF_FIELD");
+                        string value = OracleDataUtil.ReadString(reader, "XREF_VALUE");
+                        xrefData.Add(key, value);
+                    }
+                    OracleDataUtil.ParseXrefData(xrefData, detail);
+                }
+            }
+
+            return detail;
+        }
+
         /// <summary>
         /// Returns a list of all the transactions in the database that match the given refinements
         /// in the cfgQuery.
@@ -27,8 +73,9 @@ namespace HubPortal.Data {
         public static IEnumerable<Transaction> GetTransactions(IQuery query) {
             List<Transaction> transactions = new List<Transaction>();
 
-            using (OracleConnection connection = new OracleConnection(DataUtil.CONN_STRING)) {
+            using (OracleConnection connection = new OracleConnection(OracleDataUtil.CONN_STRING)) {
                 connection.Open();
+                string queryString = query.ToString();
                 using (OracleCommand command = new OracleCommand(query.ToString(), connection)) {
                     transactions = ReadTransactions(command);
                 }
@@ -45,7 +92,7 @@ namespace HubPortal.Data {
         /// </returns>
         public static IEnumerable<string> GetTransactionTypeList() {
             IQuery query = QueryBuilder.GetQuery(Symbols.FINDALL, Symbols.TRANSACTION_TYPE_LIST);
-            return DataUtil.GetListOfString(query);
+            return OracleDataUtil.GetListOfString(query);
         }
 
         private static List<Transaction> ReadTransactions(OracleCommand command) {
