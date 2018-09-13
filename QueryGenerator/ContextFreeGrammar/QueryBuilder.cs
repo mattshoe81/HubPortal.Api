@@ -14,6 +14,10 @@
             return new OracleQuery(queryType, searchType);
         }
 
+        public static IQuery GetQuery(string queryString) {
+            return new OracleQuery(queryString);
+        }
+
         /// <summary>
         /// Get a new instance of an implementation of the IParser interface.
         /// </summary>

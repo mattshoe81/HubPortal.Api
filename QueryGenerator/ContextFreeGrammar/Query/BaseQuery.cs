@@ -11,6 +11,10 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
             this.CFGQuery = $"{query} {queryType} WHERE";
         }
 
+        public BaseQuery(string queryString) {
+            this.CFGQuery = queryString;
+        }
+
         // The string representation of the context free grammar constructed by the query.
         protected string CFGQuery { get; set; }
 

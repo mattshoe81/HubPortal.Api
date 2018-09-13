@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 using HubPortal.QueryGenerator.Exceptions;
@@ -80,10 +81,17 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
             }
             // If the token is FAILED, the oracle query must compare null, so it must remove quotes
             // and replace = with IS
-            if (property == Symbols.FAILED && token == "null")
+            if (property == Symbols.FAILED && token == "null") {
                 this.query += QueryLoader.GetRefinement(property, token).Replace("'", "").Replace("=", "IS");
-            else
-                this.query += QueryLoader.GetRefinement(property, token);
+            } else {
+                DateTime date;
+                if (DateTime.TryParse(token, out date)) {
+                    this.query += QueryLoader.GetRefinement(property, date.ToOracleTimeStamp());
+                } else {
+                    this.query += QueryLoader.GetRefinement(property, token);
+                }
+            }
+
             // Dequeue the right curly brace token
             token = tokens.Dequeue();
             if (token != "}") throw new QuerySyntaxException(token, "}");
@@ -99,7 +107,7 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
                 // Dequeue the WHERE token
                 tokens.Dequeue();
                 while (tokens.Count > 0) ParseRefinement(tokens);
-                if (token == Symbols.TRANSACTION) this.query += "\n)\n ORDER BY ht.TRANS_START_TIMESTAMP";
+                if (token == Symbols.TRANSACTION) this.query += "\n)";
             }
         }
 

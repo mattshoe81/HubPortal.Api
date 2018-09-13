@@ -19,11 +19,14 @@ namespace HubPortal.Data.Utilities {
         }
 
         public static int ReadInt(OracleDataReader reader, string columnName) {
-            return reader.GetInt32(reader.GetOrdinal(columnName));
+            // Avoid casting errors by catching as long and casting to int
+            return (int)(reader.GetInt64(reader.GetOrdinal(columnName)));
         }
 
         public static int? ReadNullableInt(OracleDataReader reader, string columnName) {
-            return reader.IsDBNull(reader.GetOrdinal(columnName)) ? (int?)null : reader.GetInt32(reader.GetOrdinal(columnName));
+            // Oracle may return a really large number (which we dont care about), so catch it with
+            // long and cast to int
+            return (int?)(reader.IsDBNull(reader.GetOrdinal(columnName)) ? (long?)null : reader.GetInt64(reader.GetOrdinal(columnName)));
         }
 
         public static string ReadString(OracleDataReader reader, string columnName) {

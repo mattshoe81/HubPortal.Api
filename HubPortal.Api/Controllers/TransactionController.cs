@@ -42,5 +42,21 @@ namespace HubPortal.Api.Controllers {
             transactions.RemoveAll(transaction => transaction == null);
             return Json(transactions);
         }
+
+        public JsonResult Query(string queryString) {
+            List<Transaction> transactions = TransactionEngine.GetTransactions(queryString).ToList();
+            transactions.RemoveAll(transaction => transaction == null);
+            return Json(transactions);
+        }
+
+        public string Zip(string id) {
+            //const string contentType = "application/zip";
+            //this.HttpContext.Response.ContentType = contentType;
+            //FileContentResult result = new FileContentResult(System.IO.File.ReadAllBytes(@"{path_to_files}\file.zip"), contentType) {
+            //    FileDownloadName = $"hubTransaction.{id}.zip"
+            //};
+
+            return $"Not Yet Implemented \n\nTransaction ID: '{id}'";
+        }
     }
 }

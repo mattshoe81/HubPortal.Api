@@ -60,7 +60,6 @@
     <None Remove="Queries\ByCtu.sql" />
     <None Remove="Queries\ByDestination.sql" />
     <None Remove="Queries\ByEndTime.sql" />
-    <None Remove="Queries\ByFailed.sql" />
     <None Remove="Queries\ByFnolNumber.sql" />
     <None Remove="Queries\ByGenericSearchString.sql" />
     <None Remove="Queries\ByInvoiceNumber.sql" />
@@ -81,6 +80,7 @@
     <None Remove="Queries\ByStartDate.sql" />
     <None Remove="Queries\ByStartTime.sql" />
     <None Remove="Queries\BySubCompany.sql" />
+    <None Remove="Queries\BySuccess.sql" />
     <None Remove="Queries\ByTransactionid.sql" />
     <None Remove="Queries\ByTransactionType.sql" />
     <None Remove="Queries\ByWarehouseNumber.sql" />
@@ -152,7 +152,7 @@
     <EmbeddedResource Include="Queries\ByCtu.sql" />
     <EmbeddedResource Include="Queries\ByDestination.sql" />
     <EmbeddedResource Include="Queries\ByEndTime.sql" />
-    <EmbeddedResource Include="Queries\ByFailed.sql" />
+    <EmbeddedResource Include="Queries\BySuccess.sql" />
     <EmbeddedResource Include="Queries\ByFnolNumber.sql" />
     <EmbeddedResource Include="Queries\ByGenericSearchString.sql" />
     <EmbeddedResource Include="Queries\ByInvoiceNumber.sql" />

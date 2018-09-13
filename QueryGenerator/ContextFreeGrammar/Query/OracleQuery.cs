@@ -16,12 +16,20 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
         /// <param name="queryType"></param>
         public OracleQuery(string query, string queryType) : base(query, queryType) { }
 
+        public OracleQuery(string queryString) : base(queryString) {
+            this.CFGQuery = queryString;
+        }
+
         public override IEnumerable<T> Execute<T>() {
             throw new System.NotImplementedException();
         }
 
         public override void ExecuteNonQuery() {
             throw new System.NotImplementedException();
+        }
+
+        public string ToDBString() {
+            return (string)QueryBuilder.GetParser().Parse(Tokenizer.GetTokens(this.CFGQuery));
         }
 
         /// <summary>
@@ -33,10 +41,6 @@ namespace HubPortal.QueryGenerator.ContextFreeGrammar {
              * To generate a database query, take the cfg string and give it to the tokenizer which will generate tokens,
              * then the parser will parse those tokens to generate the proper database query
              */
-            return (string)QueryBuilder.GetParser().Parse(Tokenizer.GetTokens(this.CFGQuery));
-        }
-
-        public string ToDBString() {
             return (string)QueryBuilder.GetParser().Parse(Tokenizer.GetTokens(this.CFGQuery));
         }
     }

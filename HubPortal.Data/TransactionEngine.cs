@@ -85,6 +85,26 @@ namespace HubPortal.Data {
         }
 
         /// <summary>
+        /// Returns a list of all the transactions in the database that match the given refinements
+        /// in the cfgQuery.
+        /// <para>For the definition of the context free grammar, see <see cref="HubPortal.QueryGenerator.ContextFreeGrammar.txt"/></para>
+        /// </summary>
+        /// <param name="query">Well formatted context free grammar string</param>
+        /// <returns>List of Transactions</returns>
+        public static IEnumerable<Transaction> GetTransactions(string queryString) {
+            List<Transaction> transactions = new List<Transaction>();
+            IQuery query = QueryBuilder.GetQuery(queryString);
+            using (OracleConnection connection = new OracleConnection(OracleDataUtil.CONN_STRING)) {
+                connection.Open();
+                using (OracleCommand command = new OracleCommand(query.ToString(), connection)) {
+                    transactions = ReadTransactions(command);
+                }
+            }
+
+            return transactions;
+        }
+
+        /// <summary>
         /// Returns a list of strings containing the names of all the transaction types in the database.
         /// </summary>
         /// <returns>

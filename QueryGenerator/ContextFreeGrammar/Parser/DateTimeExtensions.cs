@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
-namespace HubPortal.Api.Utilities {
+namespace HubPortal.QueryGenerator {
 
-    public static class DateTimeExtensions {
+    internal static class DateTimeExtensions {
 
         /// <summary>
         /// Given an Oracle Date string, generates an equivalent DateTime instance.
