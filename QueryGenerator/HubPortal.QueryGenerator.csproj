@@ -60,8 +60,10 @@
     <None Remove="Queries\ByCtu.sql" />
     <None Remove="Queries\ByDestination.sql" />
     <None Remove="Queries\ByEndTime.sql" />
+    <None Remove="Queries\ByExcludeString.sql" />
     <None Remove="Queries\ByFnolNumber.sql" />
     <None Remove="Queries\ByGenericSearchString.sql" />
+    <None Remove="Queries\ByIncludeString.sql" />
     <None Remove="Queries\ByInvoiceNumber.sql" />
     <None Remove="Queries\ByMaxTime.sql" />
     <None Remove="Queries\ByMinTime.sql" />
@@ -87,8 +89,10 @@
     <None Remove="Queries\ByWorkOrderID.sql" />
     <None Remove="Queries\ByWorkOrderNumber.sql" />
     <None Remove="Queries\ByZipCode.sql" />
+    <None Remove="Queries\GetActiveProcess.sql" />
     <None Remove="Queries\GetCheckpoints.sql" />
     <None Remove="Queries\GetClientList.sql" />
+    <None Remove="Queries\GetInactiveProcess.sql" />
     <None Remove="Queries\GetProcessList.sql" />
     <None Remove="Queries\GetTransactionDetail.sql" />
     <None Remove="Queries\GetTransactions.sql" />
@@ -152,6 +156,8 @@
     <EmbeddedResource Include="Queries\ByCtu.sql" />
     <EmbeddedResource Include="Queries\ByDestination.sql" />
     <EmbeddedResource Include="Queries\ByEndTime.sql" />
+    <EmbeddedResource Include="Queries\ByExcludeString.sql" />
+    <EmbeddedResource Include="Queries\ByIncludeString.sql" />
     <EmbeddedResource Include="Queries\BySuccess.sql" />
     <EmbeddedResource Include="Queries\ByFnolNumber.sql" />
     <EmbeddedResource Include="Queries\ByGenericSearchString.sql" />
@@ -179,8 +185,10 @@
     <EmbeddedResource Include="Queries\ByWorkOrderID.sql" />
     <EmbeddedResource Include="Queries\ByWorkOrderNumber.sql" />
     <EmbeddedResource Include="Queries\ByZipCode.sql" />
+    <EmbeddedResource Include="Queries\GetActiveProcess.sql" />
     <EmbeddedResource Include="Queries\GetCheckpoints.sql" />
     <EmbeddedResource Include="Queries\GetClientList.sql" />
+    <EmbeddedResource Include="Queries\GetInactiveProcess.sql" />
     <EmbeddedResource Include="Queries\GetTransactionDetail.sql" />
     <EmbeddedResource Include="Queries\GetProcessList.sql" />
     <EmbeddedResource Include="Queries\GetTransactions.sql" />

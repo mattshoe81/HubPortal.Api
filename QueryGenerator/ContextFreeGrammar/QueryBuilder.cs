@@ -1,4 +1,6 @@
-﻿namespace HubPortal.QueryGenerator.ContextFreeGrammar {
+﻿using System;
+
+namespace HubPortal.QueryGenerator.ContextFreeGrammar {
 
     /// <summary>
     /// Factory for the components needed to construct a Query.
@@ -16,6 +18,10 @@
 
         public static IQuery GetQuery(string queryString) {
             return new OracleQuery(queryString);
+        }
+
+        public static IQuery GetQuery(string gET, object activeProcess) {
+            throw new NotImplementedException();
         }
 
         /// <summary>

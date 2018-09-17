@@ -7,22 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HubPortal.Api.Controllers {
 
-    [Route("api/[controller]")]
     public class CheckpointController : Controller {
-
         // GET: api/<controller>
-        [HttpGet("Get")]
+
         public JsonResult Get(string transactionid) {
             IEnumerable<Checkpoint> checkpoints = CheckpointEngine.GetCheckpoints(transactionid);
             return Json(checkpoints);
         }
 
-        [HttpGet("GetEmbeddedMessage")]
         public JsonResult GetEmbeddedMessage(string checkpointid, string location) {
             return Json("the embedded message for the checkpoint");
         }
 
-        [HttpGet("GetMessage")]
         public JsonResult GetMessage(string checkpointid) {
             return Json(new string[] { "the message for the checkpoint" });
         }

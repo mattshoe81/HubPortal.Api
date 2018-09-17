@@ -9,14 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HubPortal.Api.Controllers {
 
-    [Route("api/[controller]")]
     public class ClientController : Controller {
-
         /// <summary>
         /// Returns a list of the names of all Clients in the database.
         /// </summary>
         /// <returns>List of Client Names</returns>
-        [HttpGet("Get")]
+
         public IEnumerable<string> Get() {
             List<string> clients = ClientEngine.GetClientList().ToList();
             clients.RemoveAll(client => client == null);

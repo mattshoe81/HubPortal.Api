@@ -6,53 +6,34 @@
     public class Symbols {
         public const string ACCOUNT_NUMBER = "accountNumber";
 
+        public const string ACTIVE_PROCESS = "activeProcess";
+
         public const string AMOUNT = "amount";
-
         public const string AUTHORIZATION_CODE = "authorizationCode";
-
         public const string CAR_ID = "carID";
-
         public const string CHECKPOINT = "checkpoint";
-
         public const string CLAIM_NUMBER = "claimNumber";
-
         public const string CLIENT = "client";
-
         public const string CLIENT_LIST = "clientList";
-
         public const string CLIENT_NAME = "clientName";
-
         public const string COVERAGE = "coverage";
-
         public const string CREDIT_CARD = "creditCard";
-
         public const string CREDIT_CARD_NUMBER = "creditCardNumber";
-
         public const string CSR = "csr";
-
         public const string CTU = "ctu";
-
         public const string DESTINATION = "destination";
-
         public const string DETAIL = "detail";
-
         public const string END_TIME = "endTime";
-
+        public const string EXCLUDE_GENERIC_STRING = "excludeString";
         public const string FAILED = "failed";
-
         public const string FINDALL = "FINDALL";
-
         public const string FNOL_NUMBER = "fnolNumber";
-
         public const string GENERIC = "generic";
-
         public const string GENERIC_SEARCH_STRING = "genericSearchString";
-
         public const string GET = "GET";
-
         public const string IGNORE = "ignore";
-
-        public const string INCLUDE_GENERIC_STRING = "includeGenericStringInTransaction";
+        public const string INACTIVE_PROCESS = "inactiveProcess";
+        public const string INCLUDE_GENERIC_STRING = "includeString";
 
         public const string INVOICE_NUMBER = "invoiceNumber";
 
