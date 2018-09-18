@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-
+using Amazon.Kinesis;
 using HubPortal.Api.Utilities;
 using HubPortal.Data;
 using HubPortal.Data.Models;
-
+using Kinesis;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HubPortal.Api.Controllers {
@@ -17,6 +18,7 @@ namespace HubPortal.Api.Controllers {
 
         public JsonResult GetById(string transactionid) {
             TransactionDetail detail = TransactionEngine.GetDetail(transactionid);
+            Logger.LogDummyData();
             return Json(detail);
         }
 
@@ -27,6 +29,7 @@ namespace HubPortal.Api.Controllers {
         public IEnumerable<string> GetTypes() {
             List<string> transactionTypes = TransactionEngine.GetTransactionTypeList().ToList();
             transactionTypes.RemoveAll(transactionType => transactionType == null);
+            Logger.LogDummyData();
             return transactionTypes;
         }
 
@@ -40,12 +43,14 @@ namespace HubPortal.Api.Controllers {
         public JsonResult PostData([FromBody]TransactionLookupData data) {
             List<Transaction> transactions = TransactionLookupRequestParser.GetTransactions(data).ToList();
             transactions.RemoveAll(transaction => transaction == null);
+            Logger.LogDummyData();
             return Json(transactions);
         }
 
         public JsonResult Query(string queryString) {
             List<Transaction> transactions = TransactionEngine.GetTransactions(queryString).ToList();
             transactions.RemoveAll(transaction => transaction == null);
+            Logger.LogDummyData();
             return Json(transactions);
         }
 

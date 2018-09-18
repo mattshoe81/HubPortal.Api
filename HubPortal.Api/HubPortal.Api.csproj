@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.6" />
+    <PackageReference Include="AWSSDK.Kinesis" Version="3.3.6.6" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
@@ -21,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HubPortal.Data\HubPortal.Data.csproj" />
+    <ProjectReference Include="..\Kinesis\Kinesis.csproj" />
     <ProjectReference Include="..\QueryGenerator\HubPortal.QueryGenerator.csproj" />
   </ItemGroup>
 
