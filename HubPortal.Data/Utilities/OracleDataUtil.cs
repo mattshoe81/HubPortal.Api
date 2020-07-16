@@ -12,7 +12,7 @@ namespace HubPortal.Data.Utilities {
     internal static class OracleDataUtil {
 
         // Connection string
-        internal const string CONN_STRING = @"DATA SOURCE = middleware_dev_db:1536/middev;PERSIST SECURITY INFO=True;USER ID = WBISUPPORT_USR;Password=cwadmin01";
+        internal const string CONN_STRING = @"DATA SOURCE = ";
 
         public static DateTime? ReadDateTime(OracleDataReader reader, string columnName) {
             return reader.IsDBNull(reader.GetOrdinal(columnName)) ? (DateTime?)null : reader.GetDateTime(reader.GetOrdinal(columnName));
